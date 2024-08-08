@@ -26,7 +26,6 @@ jobs:
   build:
     name: Build
     if: ${{ github.event.pull_request.draft == false }}
-    needs: [lint, prettier]
     uses: ExampleWasTakenStudios/workflows/.github/workflows/build-npm.yml@master
 
   deploy:
