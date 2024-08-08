@@ -5,14 +5,14 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended-type-checked',
         'plugin:react/recommended',
-        "plugin:react/jsx-runtime",
+        'plugin:react/jsx-runtime',
         'plugin:react-hooks/recommended',
         'plugin:prettier/recommended',
     ],
     settings: {
         react: {
-            version: 'detect'
-        }
+            version: 'detect',
+        },
     },
     ignorePatterns: ['dist', '.eslintrc.cjs'],
     parser: '@typescript-eslint/parser',
@@ -20,8 +20,8 @@ module.exports = {
         EXPERIMENTAL_useProjectService: true,
         tsconfigRootDir: __dirname,
         ecmaFeatures: {
-            jsx: true
-        }
+            jsx: true,
+        },
     },
     plugins: ['react', 'react-refresh'],
     rules: {
