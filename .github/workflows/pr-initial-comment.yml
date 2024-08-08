@@ -1,0 +1,26 @@
+name: PR Preview Comment
+on:
+  pull_request:
+    types:
+      - opened
+
+env:
+  COMMENT_TAG: cloudflare_preview_message
+  MESSAGE: |
+    Once your PR[^1] has been deployed[^2], you will find the preview URL here.
+
+    [^1]: For security reasons, PRs from forked repositories do not generate a preview.
+    [^2]: Your PR must be `open` and marked as `ready for review` to trigger an automatic preview deploy.
+
+jobs:
+  on-pr-opened:
+    name: Post initial comment
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Comment Preview Link Placeholder
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          comment_tag: ${{ env.COMMENT_TAG }}
+          message: ${{ env.MESSAGE }}
