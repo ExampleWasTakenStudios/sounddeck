@@ -1,0 +1,68 @@
+name: PR
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+env:
+  CLOUDFLARE_PROJECT_NAME: sounddeck
+  CLOUDFLARE_BRANCH_NAME: '#${{ github.event.pull_request.number }} / ${{ github.event.pull_request.title }}'
+
+jobs:
+  lint:
+    name: Test
+    if: ${{ github.event.pull_request.draft == false }}
+    uses: 'ExampleWasTakenStudios/workflows/.github/workflows/test-eslint.yml@master'
+
+  prettier:
+    name: Test
+    if: ${{ github.event.pull_request.draft == false }}
+    uses: 'ExampleWasTakenStudios/workflows/.github/workflows/test-prettier.yml@master'
+
+  build:
+    name: Build
+    if: ${{ github.event.pull_request.draft == false }}
+    needs: [lint, prettier]
+    uses: ExampleWasTakenStudios/workflows/.github/workflows/build-npm.yml@master
+
+  deploy:
+    name: Deploy
+    if: ${{ github.event.pull_request.head.repo.full_name == github.event.pull_request.base.repo.full_name }}
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build
+
+      - name: Deploy
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: pages deploy build --project-name="${{ env.CLOUDFLARE_PROJECT_NAME }}" --branch="${{ env.CLOUDFLARE_BRANCH_NAME }}"
+
+      - name: Get Time
+        id: get-time
+        run: echo "CURRENT_TIME=$(date -u +"%d/%m/%Y - %H:%M:%S")" >> "$GITHUB_OUTPUT"
+
+      - name: Update Preview Comment
+        env:
+          PREVIEW_LINK: ${{ steps.deploy.outputs.deployment-url }}
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          comment_tag: cloudflare_preview_message
+          message: |
+            **PR Preview at ${{ steps.get-time.outputs.CURRENT_TIME }} UTC**
+            |                Name                 |                  Preview                 |
+            | ----------------------------------- | ---------------------------------------- |
+            |  ${{ env.CLOUDFLARE_BRANCH_NAME }}  | [Visit Preview](${{ env.PREVIEW_LINK }}) |
