@@ -8,7 +8,7 @@ import { PlaylistItem } from '../components/list-items/PlaylistItem';
 import { TrackListItem } from '../components/list-items/TrackListItem';
 import { PlaylistCard } from '../components/playlist-card/PlaylistCard';
 import { PlaylistHeader } from '../components/playlist/PlaylistHeader';
-import { MainSearchBar } from '../components/searchbar/MainSearchBar';
+import { MainSearchBar } from '../components/searchbars/MainSearchBar';
 import { EmptyState } from '../EmptyState';
 
 export const DesignSystem = () => {
