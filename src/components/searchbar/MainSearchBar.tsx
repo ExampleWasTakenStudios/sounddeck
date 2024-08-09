@@ -6,7 +6,7 @@ interface MainSearchBarProps {
 
 export const MainSearchBar = ({ onChange }: MainSearchBarProps) => {
   return (
-    <search className="outline-none bg-white text-black rounded p-3 flex flex-row justify-between items-center gap-3 focus-within:ring focus-within:ring-green">
+    <search className="outline-none bg-white text-black rounded px-4 py-3 flex flex-row justify-between items-center gap-3 focus-within:ring focus-within:ring-green">
       <input
         className="w-full placeholder-dark-subdued outline-none"
         onChange={onChange}
