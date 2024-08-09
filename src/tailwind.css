@@ -4,7 +4,7 @@
 
 @layer base {
     * {
-        scrollbar-color: #AFAFAF55 #121212;
+        scrollbar-color: #afafaf55 #121212;
         scrollbar-width: thin;
     }
 }
