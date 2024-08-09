@@ -3,15 +3,14 @@ import { SecondaryButton } from './components/button/SecondaryButton';
 import { Header } from './components/header/Header';
 import { TextInput } from './components/inputs/TextInput';
 import { PlaylistItem } from './components/list-items/PlaylistItem';
+import { TrackListItem } from './components/list-items/TrackListItem';
 import { Navbar } from './components/navbar/Navbar';
 import { PlaylistCard } from './components/playlist-card/PlaylistCard';
 import { MainSearchBar } from './components/searchbar/MainSearchBar';
 
 export const Root = () => {
   return (
-    <div
-      className="bg-black text-white font-sans-serif min-h-screen min-w-screen flex flex-col"
-    >
+    <div className="bg-black text-white font-sans-serif min-h-screen min-w-screen flex flex-col">
       <Header />
 
       <main className="m-4 flex flex-col gap-3 mb-14">
@@ -62,90 +61,58 @@ export const Root = () => {
             owner="Spotify"
             coverUrl="/img/mock/playlist_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+        </div>
+
+        <div className="flex flex-col">
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistItem
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            owner="Spotify"
-            coverUrl="/img/mock/playlist_cover.jpg"
+          <TrackListItem
+            title="The Smallest Man Who Ever Lived"
+            artist="Taylor Swift"
+            coverUrl="/img/mock/album_cover.jpg"
           />
         </div>
       </main>
