@@ -1,18 +1,23 @@
-import { BackButton } from "../components/back-button/BackButton";
-import { PrimaryButton } from "../components/button/PrimaryButton";
-import { SecondaryButton } from "../components/button/SecondaryButton";
-import { TextInput } from "../components/inputs/TextInput";
-import { PlaylistItem } from "../components/list-items/PlaylistItem";
-import { TrackListItem } from "../components/list-items/TrackListItem";
-import { PlaylistCard } from "../components/playlist-card/PlaylistCard";
-import { PlaylistHeader } from "../components/playlist/PlaylistHeader";
-import { MainSearchBar } from "../components/searchbar/MainSearchBar";
-import { EmptyState } from "../EmptyState";
+import { Bookmark } from 'lucide-react';
+import { BackButton } from '../components/back-button/BackButton';
+import { PrimaryButton } from '../components/button/PrimaryButton';
+import { SecondaryButton } from '../components/button/SecondaryButton';
+import { Fab } from '../components/fab/Fab';
+import { TextInput } from '../components/inputs/TextInput';
+import { PlaylistItem } from '../components/list-items/PlaylistItem';
+import { TrackListItem } from '../components/list-items/TrackListItem';
+import { PlaylistCard } from '../components/playlist-card/PlaylistCard';
+import { PlaylistHeader } from '../components/playlist/PlaylistHeader';
+import { MainSearchBar } from '../components/searchbar/MainSearchBar';
+import { EmptyState } from '../EmptyState';
 
 export const DesignSystem = () => {
   return (
     <>
       <div>
+        <Fab onClick={() => console.log('FAB clicked')}>
+          <Bookmark />
+        </Fab>
         <PrimaryButton
           content="Login with Spotify"
           icon={<img className="w-4 aspect-square" src="/img/spotify/icons/Spotify_Icon_Black.png"></img>}
