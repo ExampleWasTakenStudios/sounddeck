@@ -2,16 +2,19 @@ import { PrimaryButton } from './components/button/PrimaryButton';
 import { SecondaryButton } from './components/button/SecondaryButton';
 import { Header } from './components/header/Header';
 import { TextInput } from './components/inputs/TextInput';
+import { PlaylistItem } from './components/list-items/PlaylistItem';
 import { Navbar } from './components/navbar/Navbar';
 import { PlaylistCard } from './components/playlist-card/PlaylistCard';
 import { MainSearchBar } from './components/searchbar/MainSearchBar';
 
 export const Root = () => {
   return (
-    <div className="bg-black text-white font-sans-serif h-screen w-screen flex flex-col">
+    <div
+      className="bg-black text-white font-sans-serif min-h-screen min-w-screen flex flex-col"
+    >
       <Header />
 
-      <main className="m-4 flex flex-col gap-3">
+      <main className="m-4 flex flex-col gap-3 mb-14">
         <div>
           <PrimaryButton
             content="Login with Spotify"
@@ -32,18 +35,118 @@ export const Root = () => {
         </div>
 
         <div className="flex flex-row gap-5">
-          <PlaylistCard
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            coverPath="/img/mock/playlist_cover.jpg"
-          />
-          <PlaylistCard
-            title="Taylor Swift | The Eras Tour Official Setlist"
-            coverPath="/img/mock/playlist_cover.jpg"
-          />
+          <PlaylistCard title="Taylor Swift | The Eras Tour Official Setlist" coverUrl="/img/mock/playlist_cover.jpg" />
+          <PlaylistCard title="Taylor Swift | The Eras Tour Official Setlist" coverUrl="/img/mock/playlist_cover.jpg" />
         </div>
 
         <div>
-          <TextInput placeholder='Name your playlist' onChange={(event) => console.log('TextInput:', event.target.value)}/>
+          <TextInput
+            placeholder="Name your playlist"
+            onChange={(event) => console.log('TextInput:', event.target.value)}
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
+          <PlaylistItem
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+          />
         </div>
       </main>
 
