@@ -2,6 +2,7 @@ import { PrimaryButton } from './components/button/PrimaryButton';
 import { SecondaryButton } from './components/button/SecondaryButton';
 import { Header } from './components/header/Header';
 import { Navbar } from './components/navbar/Navbar';
+import { MainSearchBar } from './components/searchbar/MainSearchBar';
 
 export const Root = () => {
   return (
@@ -19,6 +20,8 @@ export const Root = () => {
           icon={<img className="w-4 aspect-square" src="/img/spotify/icons/Spotify_Icon_White.png"></img>}
           onClick={() => console.log('login button clicked')}
         />
+
+        <MainSearchBar onChange={(event) => console.log(event.target.value)} />
       </main>
 
       <Navbar currentItem="search" />
