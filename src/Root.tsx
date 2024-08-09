@@ -43,7 +43,7 @@ export const Root = () => {
         </div>
 
         <div>
-          <TextInput onChange={(event) => console.log('TextInput:', event.target.value)}/>
+          <TextInput placeholder='Name your playlist' onChange={(event) => console.log('TextInput:', event.target.value)}/>
         </div>
       </main>
 
