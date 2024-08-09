@@ -12,7 +12,7 @@ export const Navbar = ({ currentItem }: NavbarProps) => {
   const iconSize = 26;
 
   return (
-    <nav className="backdrop-blur bg-black/50 h-12 w-screen fixed bottom-0 flex flex-row justify-around items-center">
+    <nav className="backdrop-blur bg-black/50 h-12 w-screen fixed bottom-0 flex flex-row justify-around items-center drop-shadow-above">
       <Search size={iconSize} className={searchCss} />
       <Library size={iconSize} className={libraryCss} />
     </nav>
