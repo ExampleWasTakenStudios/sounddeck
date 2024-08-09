@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './tailwind.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Root } from './Root';
 import { ErrorPage } from './ErrorPage';
+import { Root } from './Root';
 import { DesignSystem } from './routes/DesignSystem';
 import { RootIndex } from './routes/RootIndex';
 import { Login } from './routes/login/Login';
+import { OAuth2Authentication } from './routes/oauth2/OAuth2Authentication';
+import { OAuth2Authorization } from './routes/oauth2/OAuth2Authorization';
+import { OAuth2Fail } from './routes/oauth2/OAuth2Fail';
+import { OAuth2Success } from './routes/oauth2/OAuth2Success';
+import './tailwind.css';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +25,27 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'oauth2',
+        children: [
+          {
+            index: true,
+            element: <OAuth2Authentication />,
+          },
+          {
+            path: 'authorize',
+            element: <OAuth2Authorization />,
+          },
+          {
+            path: 'success',
+            element: <OAuth2Success />,
+          },
+          {
+            path: 'fail',
+            element: <OAuth2Fail />,
+          },
+        ],
       },
       {
         path: 'design-system',

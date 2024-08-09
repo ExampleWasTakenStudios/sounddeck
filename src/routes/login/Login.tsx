@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../../components/button/PrimaryButton';
 
 export const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="h-full flex flex-col justify-around text-center">
       <p className="text-3xl font-thin">Welcome to SoundDeck!</p>
@@ -14,7 +17,7 @@ export const Login = () => {
         <PrimaryButton
           content="Login with Spotify"
           icon={<img className="w-4" src="/img/spotify/icons/Spotify_Icon_White.png" alt="Spotify Icon" />}
-          onClick={() => {}}
+          onClick={() => navigate('/oauth2/authorize')}
         />
       </div>
 
