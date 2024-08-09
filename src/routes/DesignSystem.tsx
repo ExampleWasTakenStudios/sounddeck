@@ -84,7 +84,7 @@ export const DesignSystem = () => {
         />
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-2">
         <TrackListItem
           title="The Smallest Man Who Ever Lived"
           artist="Taylor Swift"
