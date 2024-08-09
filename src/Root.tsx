@@ -1,3 +1,4 @@
+import { BackButton } from './components/back-button/BackButton';
 import { PrimaryButton } from './components/button/PrimaryButton';
 import { SecondaryButton } from './components/button/SecondaryButton';
 import { Header } from './components/header/Header';
@@ -7,6 +8,7 @@ import { TrackListItem } from './components/list-items/TrackListItem';
 import { Navbar } from './components/navbar/Navbar';
 import { PlaylistCard } from './components/playlist-card/PlaylistCard';
 import { MainSearchBar } from './components/searchbar/MainSearchBar';
+import { EmptyState } from './EmptyState';
 
 export const Root = () => {
   return (
@@ -43,6 +45,14 @@ export const Root = () => {
             placeholder="Name your playlist"
             onChange={(event) => console.log('TextInput:', event.target.value)}
           />
+        </div>
+
+        <EmptyState content="Save some mixes and watch them appear here.">
+          <PrimaryButton content="Search Mixes" onClick={() => {}} />
+        </EmptyState>
+
+        <div>
+          <BackButton content="Back" />
         </div>
 
         <div className="flex flex-col gap-2">
