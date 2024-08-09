@@ -1,6 +1,7 @@
 import { PrimaryButton } from './components/button/PrimaryButton';
 import { SecondaryButton } from './components/button/SecondaryButton';
 import { Header } from './components/header/Header';
+import { TextInput } from './components/inputs/TextInput';
 import { Navbar } from './components/navbar/Navbar';
 import { PlaylistCard } from './components/playlist-card/PlaylistCard';
 import { MainSearchBar } from './components/searchbar/MainSearchBar';
@@ -27,7 +28,7 @@ export const Root = () => {
         </div>
 
         <div>
-          <MainSearchBar onChange={(event) => console.log(event.target.value)} />
+          <MainSearchBar onChange={(event) => console.log('MainSearchBar:', event.target.value)} />
         </div>
 
         <div className="flex flex-row gap-5">
@@ -39,6 +40,10 @@ export const Root = () => {
             title="Taylor Swift | The Eras Tour Official Setlist"
             coverPath="/img/mock/playlist_cover.jpg"
           />
+        </div>
+
+        <div>
+          <TextInput onChange={(event) => console.log('TextInput:', event.target.value)}/>
         </div>
       </main>
 
