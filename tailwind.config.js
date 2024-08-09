@@ -9,8 +9,8 @@ export default {
         green: '#1DB954',
         purple: '#400073',
         subdued: '#AFAFAF',
-        'dark-subdued': '#636363'
-      }
+        'dark-subdued': '#636363',
+      },
     },
   },
   plugins: [],

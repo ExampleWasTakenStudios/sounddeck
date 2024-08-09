@@ -12,7 +12,7 @@ export const PrimaryButton = ({ content, icon, disabled, onClick }: PrimaryButto
   const css = clsx(
     'bg-green text-white px-3 py-2 rounded flex flex-row justify-center items-center gap-1 text-center cursor-pointer',
     disabled && 'opacity-75 cursor-not-allowed active:bg-green',
-    !disabled && 'active:bg-green/70'
+    !disabled && 'active:bg-green/70',
   );
 
   return (

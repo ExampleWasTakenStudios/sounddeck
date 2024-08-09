@@ -12,8 +12,10 @@ export const ErrorPage = () => {
         src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXZxOXkyMWg2cHU5azIwNnAwMWJkMGUwdHQzYXdhMm1ya3FvbGozZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U17JjFGv0DuMmVH4S7/giphy.webp"
         alt="Taylor Swift looking disappointed"
       />
-      <p className="text-subdued">We can't seem to find the page you are looking for.</p>
-      <Link to="/" className='text-green underline underline-offset-2'>Home</Link>
+      <p className="text-subdued">We can&apos;t seem to find the page you are looking for.</p>
+      <Link to="/" className="text-green underline underline-offset-2">
+        Home
+      </Link>
     </div>
   );
 };
