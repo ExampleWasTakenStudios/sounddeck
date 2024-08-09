@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from './components/header/Header';
-import { Navbar } from './components/navbar/Navbar';
 
 export const Root = () => {
   return (
@@ -10,8 +9,6 @@ export const Root = () => {
       <main className="m-4 flex flex-col gap-3 mb-14">
         <Outlet />
       </main>
-
-      <Navbar currentItem="search" />
     </div>
   );
 };

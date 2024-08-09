@@ -6,6 +6,7 @@ import { Root } from './Root';
 import { ErrorPage } from './ErrorPage';
 import { DesignSystem } from './routes/DesignSystem';
 import { RootIndex } from './routes/RootIndex';
+import { Login } from './routes/login/Login';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <RootIndex />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
       },
       {
         path: 'design-system',

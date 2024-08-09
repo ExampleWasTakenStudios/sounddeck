@@ -10,6 +10,7 @@ import { PlaylistCard } from '../components/playlist-card/PlaylistCard';
 import { PlaylistHeader } from '../components/playlist/PlaylistHeader';
 import { MainSearchBar } from '../components/searchbars/MainSearchBar';
 import { EmptyState } from '../EmptyState';
+import { Navbar } from '../components/navbar/Navbar';
 
 export const DesignSystem = () => {
   return (
@@ -136,6 +137,8 @@ export const DesignSystem = () => {
           coverUrl="/img/mock/album_cover.jpg"
         />
       </div>
+      
+      <Navbar currentItem="search" />
     </>
   );
 };
