@@ -7,6 +7,7 @@ import { PlaylistItem } from './components/list-items/PlaylistItem';
 import { TrackListItem } from './components/list-items/TrackListItem';
 import { Navbar } from './components/navbar/Navbar';
 import { PlaylistCard } from './components/playlist-card/PlaylistCard';
+import { PlaylistHeader } from './components/playlist/PlaylistHeader';
 import { MainSearchBar } from './components/searchbar/MainSearchBar';
 import { EmptyState } from './EmptyState';
 
@@ -53,6 +54,16 @@ export const Root = () => {
 
         <div>
           <BackButton content="Back" />
+        </div>
+
+        <div>
+          <PlaylistHeader
+            title="Taylor Swift | The Eras Tour Official Setlist"
+            owner="Spotify"
+            coverUrl="/img/mock/playlist_cover.jpg"
+            ownerProfilePictureUrl="/img/spotify/icons/Spotify_Icon_Green.png"
+            description="All the songs from the new setlist for Taylor Swift | The Eras Tour."
+          />
         </div>
 
         <div className="flex flex-col gap-2">
