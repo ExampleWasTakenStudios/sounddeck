@@ -43,6 +43,8 @@ module.exports = {
         'no-constructor-return': 'error', // Returing values from constructors is bad practice and can be confusing as constructors always return the object they instantiated (this).
         'no-self-compare': 'error', // Saves time during code review .(https://eslint.org/docs/latest/rules/no-self-compare)
         'no-unreachable-loop': 'error', // Saves time during code review by preventing unecessary one-time-loops. (https://eslint.org/docs/latest/rules/no-unreachable-loop)
-        'no-console': 'warn', // Using winston should be preferred over direct console.log statements.
+        
+        // TODO: use winston
+        //'no-console': 'warn', // Using winston should be preferred over direct console.log statements.
     },
 };
