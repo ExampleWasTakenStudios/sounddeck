@@ -15,10 +15,12 @@
     },
     "dependencies": {
         "clsx": "^2.1.1",
+        "crypto-hash": "^3.1.0",
         "lucide-react": "^0.426.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "react-router-dom": "^6.26.0"
+        "react-router-dom": "^6.26.0",
+        "storage-manager-js": "^4.2.6-5"
     },
     "devDependencies": {
         "@types/react": "^18.3.3",

@@ -10,6 +10,11 @@ export const RootIndex = () => {
             Design System
           </Link>
         </li>
+        <li className="list-disc">
+          <Link className="text-green underline underline-offset-2" to="/login">
+            Login
+          </Link>
+        </li>
       </ul>
     </>
   );

@@ -6,9 +6,11 @@ import { Fab } from '../components/fab/Fab';
 import { TextInput } from '../components/inputs/TextInput';
 import { PlaylistItem } from '../components/list-items/PlaylistItem';
 import { TrackListItem } from '../components/list-items/TrackListItem';
+import { Navbar } from '../components/navbar/Navbar';
 import { PlaylistCard } from '../components/playlist-card/PlaylistCard';
 import { PlaylistHeader } from '../components/playlist/PlaylistHeader';
 import { MainSearchBar } from '../components/searchbars/MainSearchBar';
+import { BasicSpinner } from '../components/spinners/BasicSpinner';
 import { EmptyState } from '../EmptyState';
 
 export const DesignSystem = () => {
@@ -46,6 +48,10 @@ export const DesignSystem = () => {
           placeholder="Name your playlist"
           onChange={(event) => console.log('TextInput:', event.target.value)}
         />
+      </div>
+
+      <div className="flex justify-center">
+        <BasicSpinner />
       </div>
 
       <EmptyState content="Save some mixes and watch them appear here.">
@@ -136,6 +142,8 @@ export const DesignSystem = () => {
           coverUrl="/img/mock/album_cover.jpg"
         />
       </div>
+
+      <Navbar currentItem="search" />
     </>
   );
 };
