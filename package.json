@@ -23,6 +23,7 @@
         "storage-manager-js": "^4.2.6-5"
     },
     "devDependencies": {
+        "@spotify/web-api-ts-sdk": "^1.2.0",
         "@types/react": "^18.3.3",
         "@types/react-dom": "^18.3.0",
         "@typescript-eslint/eslint-plugin": "^7.15.0",
