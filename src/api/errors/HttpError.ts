@@ -8,6 +8,8 @@ export class HttpError extends globalThis.Error {
     this.code = code;
     this.statusText = statusText;
     this.body = body;
+    this.name = 'HttpError';
+    this.message = 'An unspecified HTTP error occurred.';
   }
 
   override toString(): string {
