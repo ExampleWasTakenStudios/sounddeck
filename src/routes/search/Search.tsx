@@ -1,6 +1,6 @@
 import { FeaturedPlaylists, ItemTypes, SearchResults } from '@spotify/web-api-ts-sdk';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getFeaturedPlaylists } from '../../api/endpoints/browse/featuredPlaylists';
 import { search } from '../../api/endpoints/search/search';
 import { Navbar } from '../../components/navbar/Navbar';
@@ -12,7 +12,6 @@ import { EmptyState } from '../../EmptyState';
 const ENABLE_SEARCH = false;
 
 export const Search = () => {
-  const location = useLocation();
   const [_searchResults, setSearchResults] = useState<SearchResults<ItemTypes[]>>();
 
   const [featuredPlaylists, setFeaturedPlaylists] = useState<FeaturedPlaylists | null>(null);
@@ -58,7 +57,7 @@ export const Search = () => {
         <EmptyState content="We'd love to recommend you something good but we're just as clueless as you." />
       )}
 
-      <Navbar currentItem={location.pathname.startsWith('/search') ? 'search' : 'library'} />
+      <Navbar />
     </>
   );
 };

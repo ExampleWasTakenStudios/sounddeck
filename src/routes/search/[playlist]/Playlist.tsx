@@ -6,6 +6,7 @@ import { getMe } from '../../../api/endpoints/users/getMe';
 import { getUser } from '../../../api/endpoints/users/getUser';
 import { BackButton } from '../../../components/back-button/BackButton';
 import { TrackListItem } from '../../../components/list-items/TrackListItem';
+import { Navbar } from '../../../components/navbar/Navbar';
 import { PlaylistHeader } from '../../../components/playlist/PlaylistHeader';
 import { BasicSpinner } from '../../../components/spinners/BasicSpinner';
 
@@ -71,6 +72,8 @@ export const Playlist = () => {
           <p className="font-thin">Fetching Playlist...</p>
         </section>
       )}
+
+      <Navbar />
     </>
   );
 };
