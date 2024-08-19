@@ -143,7 +143,7 @@ export const DesignSystem = () => {
         />
       </div>
 
-      <Navbar currentItem="search" />
+      <Navbar />
     </>
   );
 };
