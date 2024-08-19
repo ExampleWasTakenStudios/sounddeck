@@ -1,12 +1,17 @@
 import { Playlist as SpotifyPlaylist, Track, UserProfile } from '@spotify/web-api-ts-sdk';
 import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { addItemsToPlaylist } from '../../../api/endpoints/playlists/addItemsToPlaylist';
+import { createPlaylist } from '../../../api/endpoints/playlists/createPlaylist';
 import { getPlaylist } from '../../../api/endpoints/playlists/getPlaylist';
 import { getMe } from '../../../api/endpoints/users/getMe';
 import { getUser } from '../../../api/endpoints/users/getUser';
 import { BackButton } from '../../../components/back-button/BackButton';
+import { PrimaryButton } from '../../../components/button/PrimaryButton';
+import { SecondaryButton } from '../../../components/button/SecondaryButton';
 import { Fab } from '../../../components/fab/Fab';
+import { TextInput } from '../../../components/inputs/TextInput';
 import { TrackListItem } from '../../../components/list-items/TrackListItem';
 import { Navbar } from '../../../components/navbar/Navbar';
 import { PlaylistHeader } from '../../../components/playlist/PlaylistHeader';
@@ -14,8 +19,32 @@ import { BasicSpinner } from '../../../components/spinners/BasicSpinner';
 
 export const Playlist = () => {
   const { playlistId } = useParams();
+  const navigate = useNavigate();
+
   const [playlist, setPlaylist] = useState<SpotifyPlaylist | null>(null);
   const [playlistOwner, setPlaylistOwner] = useState<UserProfile | null>(null);
+
+  // Save Playlist logic
+  const [saveActive, setSaveActive] = useState(false);
+  const [newPlaylistName, setPlaylistName] = useState('');
+
+  const onPlaylistSave = async () => {
+    if (!newPlaylistName || !playlist) {
+      return;
+    }
+
+    const createdPlaylist = await createPlaylist({ name: newPlaylistName, public: false, collaborative: false });
+
+    const uris: string[] = [];
+    for (const track of playlist.tracks.items) {
+      uris.push(track.track.uri);
+    }
+
+    await addItemsToPlaylist({ playlistId: createdPlaylist.id, uris });
+
+    navigate(`/playlist/${createdPlaylist.id}`);
+    setSaveActive(false);
+  };
 
   useEffect(() => {
     if (!playlistId) {
@@ -75,11 +104,29 @@ export const Playlist = () => {
         </section>
       )}
 
-      <Fab onClick={() => console.log('FAB CLICKED')}>
+      <Fab onClick={() => setSaveActive(true)}>
         <Save />
       </Fab>
 
       <Navbar />
+
+      {saveActive && (
+        <div className="fixed inset-0 backdrop-blur-lg bg-transparent bg-gradient-to-b from-purple/50 to-green/50 flex flex-col justify-center items-center gap-5">
+          <TextInput
+            placeholder="Give your playlist a name."
+            onChange={(event) => setPlaylistName(event.target.value)}
+          />
+          <div className="flex flex-row justify-around gap-3">
+            <SecondaryButton content="Cancel" onClick={() => setSaveActive(false)} width={80} />
+            <PrimaryButton
+              content="Save"
+              onClick={() => void onPlaylistSave()}
+              disabled={!newPlaylistName}
+              width={80}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };
