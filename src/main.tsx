@@ -11,6 +11,7 @@ import { OAuth2Authorization } from './routes/oauth2/OAuth2Authorization';
 import { OAuth2Fail } from './routes/oauth2/OAuth2Fail';
 import { OAuth2Success } from './routes/oauth2/OAuth2Success';
 import { Search } from './routes/search/Search';
+import { Playlist } from './routes/search/[playlist]/Playlist';
 import './tailwind.css';
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'search',
         element: <Search />,
+      },
+      {
+        path: '/playlist/:playlistId',
+        element: <Playlist />,
       },
       {
         path: 'login',

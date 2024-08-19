@@ -1,6 +1,6 @@
 import { FeaturedPlaylists, ItemTypes, SearchResults } from '@spotify/web-api-ts-sdk';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getFeaturedPlaylists } from '../../api/endpoints/browse/featuredPlaylists';
 import { search } from '../../api/endpoints/search/search';
 import { Navbar } from '../../components/navbar/Navbar';
@@ -22,7 +22,7 @@ export const Search = () => {
 
     const query = event.target.value;
 
-    const results = await search({ query, type: ['track'], market: 'DE' });
+    const results = await search({ query, type: ['track'] });
     setSearchResults(results);
     console.log(results.tracks!.items[0].name, 'by', results.tracks!.items[0].artists[0].name);
   };
@@ -47,11 +47,15 @@ export const Search = () => {
       {featuredPlaylists ? (
         <div className="grid grid-cols-2 gap-5">
           {featuredPlaylists.playlists.items.map((playlist) => {
-            return <PlaylistCard title={playlist.name} coverUrl={playlist.images[0].url} key={playlist.id} />;
+            return (
+              <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
+                <PlaylistCard title={playlist.name} coverUrl={playlist.images[0].url} />
+              </Link>
+            );
           })}
         </div>
       ) : (
-        <EmptyState content="We'd love to recommend you something good but we're just as clueless as you!" />
+        <EmptyState content="We'd love to recommend you something good but we're just as clueless as you." />
       )}
 
       <Navbar currentItem={location.pathname.startsWith('/search') ? 'search' : 'library'} />

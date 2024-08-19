@@ -7,8 +7,8 @@ import { InternalServerError } from '../errors/InternalServerError';
 import { NotFoundError } from '../errors/NotFoundError';
 import { RateLimitError } from '../errors/RateLimitError';
 import { ServiceUnavailableError } from '../errors/ServiceUnavailableError';
-import { UnauthorizedError } from '../errors/UnauthorizedError';
 import { AccessToken } from '../types/AccessToken';
+import { UnauthorizedError } from '../errors/UnauthorizedError';
 
 export class SpotifyRequest {
   private readonly baseUrl: string;
