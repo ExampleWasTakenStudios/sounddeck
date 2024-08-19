@@ -1,4 +1,4 @@
-import { Playlist as SpotifyPlaylist, Track, UserProfile } from '@spotify/web-api-ts-sdk';
+import { Playlist as SpotifyPlaylist, Track, User, UserProfile } from '@spotify/web-api-ts-sdk';
 import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,6 +20,8 @@ import { BasicSpinner } from '../../../components/spinners/BasicSpinner';
 export const Playlist = () => {
   const { playlistId } = useParams();
   const navigate = useNavigate();
+
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const [playlist, setPlaylist] = useState<SpotifyPlaylist | null>(null);
   const [playlistOwner, setPlaylistOwner] = useState<UserProfile | null>(null);
@@ -45,6 +47,14 @@ export const Playlist = () => {
     navigate(`/playlist/${createdPlaylist.id}`);
     setSaveActive(false);
   };
+
+  useEffect(() => {
+    const asyncWrapper = async () => {
+      setCurrentUser(await getMe());
+    };
+
+    void asyncWrapper();
+  }, []);
 
   useEffect(() => {
     if (!playlistId) {
@@ -104,9 +114,11 @@ export const Playlist = () => {
         </section>
       )}
 
-      <Fab onClick={() => setSaveActive(true)}>
-        <Save />
-      </Fab>
+      {playlist && currentUser && playlist.owner.id !== currentUser.id && (
+        <Fab onClick={() => setSaveActive(true)}>
+          <Save />
+        </Fab>
+      )}
 
       <Navbar />
 
