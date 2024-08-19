@@ -1,10 +1,12 @@
 import { Playlist as SpotifyPlaylist, Track, UserProfile } from '@spotify/web-api-ts-sdk';
+import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPlaylist } from '../../../api/endpoints/playlists/getPlaylist';
 import { getMe } from '../../../api/endpoints/users/getMe';
 import { getUser } from '../../../api/endpoints/users/getUser';
 import { BackButton } from '../../../components/back-button/BackButton';
+import { Fab } from '../../../components/fab/Fab';
 import { TrackListItem } from '../../../components/list-items/TrackListItem';
 import { Navbar } from '../../../components/navbar/Navbar';
 import { PlaylistHeader } from '../../../components/playlist/PlaylistHeader';
@@ -72,6 +74,10 @@ export const Playlist = () => {
           <p className="font-thin">Fetching Playlist...</p>
         </section>
       )}
+
+      <Fab onClick={() => console.log('FAB CLICKED')}>
+        <Save />
+      </Fab>
 
       <Navbar />
     </>
