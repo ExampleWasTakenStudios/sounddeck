@@ -21,7 +21,7 @@ export const Search = () => {
 
     const query = event.target.value;
 
-    const results = await search({ query, type: ['track'] });
+    const results = await search({ query, type: ['playlist'] });
     setSearchResults(results);
     console.log(results.tracks!.items[0].name, 'by', results.tracks!.items[0].artists[0].name);
   };
