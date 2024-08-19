@@ -9,7 +9,7 @@ export interface SearchOptions {
   offset?: number;
 }
 
-const ENDPOINT = '/search?';
+const ENDPOINT = '/search';
 
 export const search = ({ query, type, limit = 20, offset = 0 }: SearchOptions) => {
   const params = new URLSearchParams({
@@ -20,6 +20,8 @@ export const search = ({ query, type, limit = 20, offset = 0 }: SearchOptions) =
   });
 
   const endpoint = `${ENDPOINT}?${params.toString()}`;
+
+  console.log(endpoint);
 
   return new SpotifyRequest().get<SearchResults<ItemTypes[]>>(endpoint);
 };

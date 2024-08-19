@@ -12,7 +12,7 @@ export const TrackListItem = ({ title, artist, explicit, coverUrl }: TrackListIt
     <div className="w-full flex flex-row items-center gap-2 transition-transform ease-out active:scale-95">
       <img className="h-14 rounded-sm" src={coverUrl} alt={`Cover of ${title} by ${artist}.`} />
       <div className="w-full truncate flex flex-col justify-between">
-        <h1 className="truncate">{title}</h1>
+        <h1 className="text-white truncate">{title}</h1>
         <div className="flex flex-row items-center gap-1">
           {explicit && <CircleAlert className="text-subdued" size={16} />}
           <h2 className="font-light text-subdued">{artist}</h2>

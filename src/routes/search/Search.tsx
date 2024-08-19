@@ -3,27 +3,28 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getFeaturedPlaylists } from '../../api/endpoints/browse/featuredPlaylists';
 import { search } from '../../api/endpoints/search/search';
+import { TrackListItem } from '../../components/list-items/TrackListItem';
 import { Navbar } from '../../components/navbar/Navbar';
 import { PlaylistCard } from '../../components/playlist-card/PlaylistCard';
 import { RouteHeading } from '../../components/route-heading/RouteHeading';
 import { MainSearchBar } from '../../components/searchbars/MainSearchBar';
 import { EmptyState } from '../../EmptyState';
 
-const ENABLE_SEARCH = false;
-
 export const Search = () => {
-  const [_searchResults, setSearchResults] = useState<SearchResults<ItemTypes[]>>();
+  const [searchResults, setSearchResults] = useState<SearchResults<ItemTypes[]> | null>(null);
 
   const [featuredPlaylists, setFeaturedPlaylists] = useState<FeaturedPlaylists | null>(null);
 
   const onSearchBarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!ENABLE_SEARCH) return;
-
     const query = event.target.value;
 
-    const results = await search({ query, type: ['playlist'] });
+    if (query.length < 1) {
+      setSearchResults(null);
+      return;
+    }
+
+    const results = await search({ query, type: ['playlist'], limit: 8 });
     setSearchResults(results);
-    console.log(results.tracks!.items[0].name, 'by', results.tracks!.items[0].artists[0].name);
   };
 
   useEffect(() => {
@@ -39,7 +40,20 @@ export const Search = () => {
     <>
       <RouteHeading title="Search" />
 
-      <MainSearchBar onChange={(event) => void onSearchBarChange(event)} />
+      <MainSearchBar
+        onChange={(event) => void onSearchBarChange(event)}
+        suggestions={searchResults?.playlists?.items.map((playlist) => {
+          return (
+            <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
+              <TrackListItem
+                title={playlist.name}
+                artist={playlist.owner.display_name}
+                coverUrl={playlist.images[0].url}
+              />
+            </Link>
+          );
+        })}
+      />
 
       <h2 className="text-xl font-thin my-2">Featured Playlists</h2>
 
