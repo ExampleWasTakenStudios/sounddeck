@@ -18,9 +18,9 @@ export const PlaylistHeader = ({
     <div className="flex flex-col gap-2">
       <img className="w-52 rounded self-center" src={coverUrl} alt={`Cover of ${title} by ${owner}.`} />
       <h1 className="text-lg">{title}</h1>
-      <p className="text-subdued text-sm">{description}</p>
-      <div className="flex flex-row items-center gap-1">
-        <img className="h-4" src={ownerProfilePictureUrl} alt={`Profile picture of ${owner}`} />
+      <p className="text-subdued text-xs">{description}</p>
+      <div className="flex flex-row items-center gap-2">
+        <img className="h-4 rounded-full" src={ownerProfilePictureUrl} alt={`Profile picture of ${owner}`} />
         <p className="text-sm font-bold">{owner}</p>
       </div>
     </div>

@@ -35,7 +35,7 @@ export const DesignSystem = () => {
       </div>
 
       <div>
-        <MainSearchBar onChange={(event) => console.log('MainSearchBar:', event.target.value)} />
+        <MainSearchBar onChange={(event) => console.log('MainSearchBar:', event.target.value)} suggestions={null} />
       </div>
 
       <div className="flex flex-row gap-5">
@@ -143,7 +143,7 @@ export const DesignSystem = () => {
         />
       </div>
 
-      <Navbar currentItem="search" />
+      <Navbar />
     </>
   );
 };

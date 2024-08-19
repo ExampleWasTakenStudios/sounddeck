@@ -15,6 +15,11 @@ export const RootIndex = () => {
             Login
           </Link>
         </li>
+        <li className="list-disc">
+          <Link className="text-green underline underline-offset-2" to="/search">
+            Search
+          </Link>
+        </li>
       </ul>
     </>
   );
