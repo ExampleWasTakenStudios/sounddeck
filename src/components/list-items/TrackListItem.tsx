@@ -10,7 +10,11 @@ interface TrackListItemProps {
 export const TrackListItem = ({ title, artist, explicit, coverUrl }: TrackListItemProps) => {
   return (
     <div className="w-full flex flex-row items-center gap-2 transition-transform ease-out active:scale-95">
-      <img className="h-14 rounded-sm" src={coverUrl} alt={`Cover of ${title} by ${artist}.`} />
+      <img
+        className="h-14 aspect-square object-cover rounded-sm"
+        src={coverUrl}
+        alt={`Cover of ${title} by ${artist}.`}
+      />
       <div className="w-full truncate flex flex-col justify-between">
         <h1 className="text-white truncate">{title}</h1>
         <div className="flex flex-row items-center gap-1">

@@ -58,7 +58,7 @@ export const Search = () => {
       <h2 className="text-xl font-thin my-2">Featured Playlists</h2>
 
       {featuredPlaylists ? (
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-flow-col gap-5">
           {featuredPlaylists.playlists.items.map((playlist) => {
             return (
               <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
