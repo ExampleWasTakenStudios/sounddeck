@@ -14,6 +14,4 @@ export const SCOPES = [
   'playlist-modify-public',
   'user-library-modify',
   'user-library-read',
-  'user-read-private',
-  'user-read-email',
 ];

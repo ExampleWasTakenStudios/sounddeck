@@ -39,8 +39,16 @@ export const DesignSystem = () => {
       </div>
 
       <div className="flex flex-row gap-5">
-        <PlaylistCard title="Taylor Swift | The Eras Tour Official Setlist" coverUrl="/img/mock/playlist_cover.jpg" />
-        <PlaylistCard title="Taylor Swift | The Eras Tour Official Setlist" coverUrl="/img/mock/playlist_cover.jpg" />
+        <PlaylistCard
+          title="Taylor Swift | The Eras Tour Official Setlist"
+          coverUrl="/img/mock/playlist_cover.jpg"
+          width={600}
+        />
+        <PlaylistCard
+          title="Taylor Swift | The Eras Tour Official Setlist"
+          coverUrl="/img/mock/playlist_cover.jpg"
+          width={600}
+        />
       </div>
 
       <div>
