@@ -1,16 +1,17 @@
 interface PlaylistCardProps {
   title: string;
+  width: number;
   coverUrl: string;
 }
 
-export const PlaylistCard = ({ title, coverUrl: coverPath }: PlaylistCardProps) => {
+export const PlaylistCard = ({ title, width, coverUrl }: PlaylistCardProps) => {
   return (
     <div className="flex flex-col gap-1 aspect-square w-full transition-transform ease-out active:scale-95">
       <img
-        width={200}
-        height={200}
+        width={width}
+        height={width}
         className="rounded-md aspect-square"
-        src={coverPath}
+        src={coverUrl}
         alt="Playlist cover"
         loading="lazy"
       />
