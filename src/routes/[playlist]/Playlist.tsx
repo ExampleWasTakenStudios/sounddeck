@@ -1,12 +1,7 @@
-import { Playlist as SpotifyPlaylist, Track, User, UserProfile } from '@spotify/web-api-ts-sdk';
+import { PlaylistedTrack, Playlist as SpotifyPlaylist, Track, User } from '@spotify/web-api-ts-sdk';
 import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { addItemsToPlaylist } from '../../api/endpoints/playlists/addItemsToPlaylist';
-import { createPlaylist } from '../../api/endpoints/playlists/createPlaylist';
-import { getPlaylist } from '../../api/endpoints/playlists/getPlaylist';
-import { getMe } from '../../api/endpoints/users/getMe';
-import { getUser } from '../../api/endpoints/users/getUser';
 import { BackButton } from '../../components/back-button/BackButton';
 import { PrimaryButton } from '../../components/button/PrimaryButton';
 import { SecondaryButton } from '../../components/button/SecondaryButton';
@@ -16,66 +11,93 @@ import { TrackListItem } from '../../components/list-items/TrackListItem';
 import { Navbar } from '../../components/navbar/Navbar';
 import { PlaylistHeader } from '../../components/playlist/PlaylistHeader';
 import { BasicSpinner } from '../../components/spinners/BasicSpinner';
+import { useSpotify } from '../../hooks/useSpotify';
 
 export const Playlist = () => {
   const { playlistId } = useParams();
   const navigate = useNavigate();
+  const spotify = useSpotify();
 
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const [playlist, setPlaylist] = useState<SpotifyPlaylist | null>(null);
-  const [playlistOwner, setPlaylistOwner] = useState<UserProfile | null>(null);
+  const [playlistOwner, setPlaylistOwner] = useState<User | null>(null);
 
   // Save Playlist logic
   const [saveActive, setSaveActive] = useState(false);
   const [newPlaylistName, setPlaylistName] = useState('');
 
-  const onPlaylistSave = async () => {
-    if (!newPlaylistName || !playlist) {
+  const recursivelyGetPlaylistItems = async (playlistId: string, offset = 0) => {
+    let items: PlaylistedTrack<Track>[] = [];
+
+    const playlistItems = await spotify.playlists.getPlaylistItems(playlistId, undefined, undefined, 50, offset);
+
+    items = items.concat(playlistItems.items);
+
+    if (playlistItems.next) {
+      offset += playlistItems.limit;
+      items = items.concat(await recursivelyGetPlaylistItems(playlistId, offset));
+    }
+
+    return items;
+  };
+
+  const playlistSaveHandler = async () => {
+    if (!newPlaylistName || !playlist || !playlistId) {
       return;
     }
 
-    const createdPlaylist = await createPlaylist({ name: newPlaylistName, public: false, collaborative: false });
+    const playlistItems = await recursivelyGetPlaylistItems(playlistId);
 
-    const uris: string[] = [];
-    for (const track of playlist.tracks.items) {
-      uris.push(track.track.uri);
+    console.log('FINAL ITEMS:', playlistItems);
+
+    if (playlistItems.length < 1) {
+      console.error('No playlist items');
+      return;
     }
 
-    await addItemsToPlaylist({ playlistId: createdPlaylist.id, uris });
+    const createdPlaylist = await spotify.playlists.createPlaylist((await spotify.currentUser.profile()).id, {
+      name: newPlaylistName,
+      public: false,
+      collaborative: false,
+    });
+
+    const uris: string[] = [];
+    for (const item of playlistItems) {
+      uris.push(item.track.uri);
+    }
+
+    console.log('URIs:', uris);
+
+    try {
+      await spotify.playlists.addItemsToPlaylist(createdPlaylist.id, uris);
+    } catch (e) {
+      console.error(e);
+    }
 
     navigate(`/playlist/${createdPlaylist.id}`);
     setSaveActive(false);
   };
 
   useEffect(() => {
-    const asyncWrapper = async () => {
-      setCurrentUser(await getMe());
-    };
-
-    void asyncWrapper();
-  }, []);
-
-  useEffect(() => {
     if (!playlistId) {
       return;
     }
 
-    const asyncWrapper = async () => {
+    void (async () => {
       try {
-        const currentUser = await getMe();
-        const playlist = await getPlaylist({ playlistId, market: currentUser.country });
-        const playlistOwner = await getUser({ userId: playlist.owner.id });
+        const currentUser = await spotify.currentUser.profile();
+        const playlist = await spotify.playlists.getPlaylist(playlistId);
+        const playlistOwner = await spotify.users.profile(playlist.owner.id);
 
+        setCurrentUser(currentUser);
         setPlaylist(playlist);
         setPlaylistOwner(playlistOwner);
       } catch (e) {
         console.error(e);
       }
-    };
-
-    void asyncWrapper();
-  }, [playlistId]);
+    })();
+  }, [spotify, playlistId]);
 
   return (
     <>
@@ -132,7 +154,7 @@ export const Playlist = () => {
             <SecondaryButton content="Cancel" onClick={() => setSaveActive(false)} width={80} />
             <PrimaryButton
               content="Save"
-              onClick={() => void onPlaylistSave()}
+              onClick={() => void playlistSaveHandler()}
               disabled={!newPlaylistName}
               width={80}
             />

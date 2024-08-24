@@ -49,7 +49,7 @@ export const Login = () => {
         <h2 className="text-2xl font-medium text-center">Log in to Spotify</h2>
         <PrimaryButton
           content="Log In with Spotify"
-          onClick={() => navigate('/oauth2/authorize')}
+          onClick={() => navigate('/oauth2')}
           icon={<img src="/img/spotify/icons/Spotify_Icon_White.png" alt="Spotify Icon" width={20} height={20} />}
         />
         <p className="text-subdued text-center text-sm font-thin">

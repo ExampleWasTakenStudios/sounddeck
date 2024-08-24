@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AuthGuard } from './AuthGuard';
 import { ErrorPage } from './ErrorPage';
 import { Root } from './Root';
 import { DesignSystem } from './routes/DesignSystem';
 import { RootIndex } from './routes/RootIndex';
 import { Playlist } from './routes/[playlist]/Playlist';
 import { Login } from './routes/login/Login';
-import { OAuth2Authentication } from './routes/oauth2/OAuth2Authentication';
-import { OAuth2Authorization } from './routes/oauth2/OAuth2Authorization';
-import { OAuth2Fail } from './routes/oauth2/OAuth2Fail';
-import { OAuth2Success } from './routes/oauth2/OAuth2Success';
+import { OAuth2 } from './routes/oauth2/OAuth2';
 import { Search } from './routes/search/Search';
 import './tailwind.css';
 
@@ -25,31 +23,19 @@ const router = createBrowserRouter([
         element: <RootIndex />,
       },
       {
-        path: 'search',
-        element: <Search />,
-      },
-      {
-        path: '/playlist/:playlistId',
-        element: <Playlist />,
-      },
-      {
-        path: 'oauth2',
+        element: <AuthGuard />,
         children: [
           {
-            index: true,
-            element: <OAuth2Authentication />,
+            path: 'oauth2',
+            element: <OAuth2 />,
           },
           {
-            path: 'authorize',
-            element: <OAuth2Authorization />,
+            path: 'search',
+            element: <Search />,
           },
           {
-            path: 'success',
-            element: <OAuth2Success />,
-          },
-          {
-            path: 'fail',
-            element: <OAuth2Fail />,
+            path: '/playlist/:playlistId',
+            element: <Playlist />,
           },
         ],
       },
