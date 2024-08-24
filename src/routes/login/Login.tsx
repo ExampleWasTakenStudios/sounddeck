@@ -15,6 +15,9 @@ export const Login = () => {
         <p>We&apos;re asking for the following permissions to access your Spotify Account:</p>
         <ul className="flex flex-col gap-2 ml-3">
           <li className="before:content-[''] before:bg-subdued before:mr-2 before:inline-block before:w-2 before:h-2 before:align-middle before:rounded-full">
+            Read access to your basic Spotify details such as your profile picture, username, and followers.
+          </li>
+          <li className="before:content-[''] before:bg-subdued before:mr-2 before:inline-block before:w-2 before:h-2 before:align-middle before:rounded-full">
             Write access to your Spotify Library to create playlists for the songs from your mixes.
           </li>
           <li className="before:content-[''] before:bg-subdued before:mr-2 before:inline-block before:w-2 before:h-2 before:align-middle before:rounded-full">
@@ -34,7 +37,10 @@ export const Login = () => {
           </a>
           .
         </p>
-        <p>All information is stored exclusively on this device.</p>
+        <p>
+          All information is stored exclusively on this device. We never share your data with anyone except Spotify for
+          the above mentioned functionality.
+        </p>
       </div>
 
       <hr className="my-5 border-b border-dark-subdued w-full" />
