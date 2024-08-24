@@ -5,8 +5,8 @@ export const Login = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="px-4 py-10 bg-black text-white h-screen flex flex-col items-center gap-5">
-      <h1 className="font-bold text-3xl">Welcome to SoundDeck!</h1>
+    <main className="px-4 py-10 bg-black text-white min-h-screen flex flex-col items-center gap-5">
+      <h1 className="font-bold text-3xl text-center">Welcome to SoundDeck!</h1>
 
       <hr className="my-5 border-b border-dark-subdued w-full" />
 
@@ -46,8 +46,8 @@ export const Login = () => {
           onClick={() => navigate('/oauth2/authorize')}
           icon={<img src="/img/spotify/icons/Spotify_Icon_White.png" alt="Spotify Icon" width={20} height={20} />}
         />
-        <p className="text-subdued text-center font-thin">
-          SoundDeck is neither endorsed nor associated by/with Spotify AB.
+        <p className="text-subdued text-center text-sm font-thin">
+          SoundDeck is neither endorsed nor associated by or with Spotify AB.
         </p>
       </div>
 
