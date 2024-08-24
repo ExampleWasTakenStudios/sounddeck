@@ -2,20 +2,20 @@ import { Playlist as SpotifyPlaylist, Track, User, UserProfile } from '@spotify/
 import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { addItemsToPlaylist } from '../../../api/endpoints/playlists/addItemsToPlaylist';
-import { createPlaylist } from '../../../api/endpoints/playlists/createPlaylist';
-import { getPlaylist } from '../../../api/endpoints/playlists/getPlaylist';
-import { getMe } from '../../../api/endpoints/users/getMe';
-import { getUser } from '../../../api/endpoints/users/getUser';
-import { BackButton } from '../../../components/back-button/BackButton';
-import { PrimaryButton } from '../../../components/button/PrimaryButton';
-import { SecondaryButton } from '../../../components/button/SecondaryButton';
-import { Fab } from '../../../components/fab/Fab';
-import { TextInput } from '../../../components/inputs/TextInput';
-import { TrackListItem } from '../../../components/list-items/TrackListItem';
-import { Navbar } from '../../../components/navbar/Navbar';
-import { PlaylistHeader } from '../../../components/playlist/PlaylistHeader';
-import { BasicSpinner } from '../../../components/spinners/BasicSpinner';
+import { addItemsToPlaylist } from '../../api/endpoints/playlists/addItemsToPlaylist';
+import { createPlaylist } from '../../api/endpoints/playlists/createPlaylist';
+import { getPlaylist } from '../../api/endpoints/playlists/getPlaylist';
+import { getMe } from '../../api/endpoints/users/getMe';
+import { getUser } from '../../api/endpoints/users/getUser';
+import { BackButton } from '../../components/back-button/BackButton';
+import { PrimaryButton } from '../../components/button/PrimaryButton';
+import { SecondaryButton } from '../../components/button/SecondaryButton';
+import { Fab } from '../../components/fab/Fab';
+import { TextInput } from '../../components/inputs/TextInput';
+import { TrackListItem } from '../../components/list-items/TrackListItem';
+import { Navbar } from '../../components/navbar/Navbar';
+import { PlaylistHeader } from '../../components/playlist/PlaylistHeader';
+import { BasicSpinner } from '../../components/spinners/BasicSpinner';
 
 export const Playlist = () => {
   const { playlistId } = useParams();
