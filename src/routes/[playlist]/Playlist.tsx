@@ -90,6 +90,8 @@ export const Playlist = () => {
         const playlist = await spotify.playlists.getPlaylist(playlistId);
         const playlistOwner = await spotify.users.profile(playlist.owner.id);
 
+        console.log('PLAYLIST:', playlist);
+
         setCurrentUser(currentUser);
         setPlaylist(playlist);
         setPlaylistOwner(playlistOwner);
@@ -111,12 +113,13 @@ export const Playlist = () => {
             coverUrl={playlist.images[0].url}
             ownerProfilePictureUrl={playlistOwner ? playlistOwner.images[playlistOwner.images.length - 1].url : ''}
           />
-          {playlist.tracks.items.map((track) => {
-            if (track.track.type !== 'track') {
-              return null;
+          {playlist.tracks.items.map((item) => {
+            // for some reason the api sometimes returns invalid objects.
+            if (item.track === null || item.track.type !== 'track') {
+              return;
             }
 
-            const castedTrack = track.track as Track;
+            const castedTrack = item.track as Track;
             const artistsString = castedTrack.artists.map((artist) => artist.name).join(', ');
             return (
               <TrackListItem
