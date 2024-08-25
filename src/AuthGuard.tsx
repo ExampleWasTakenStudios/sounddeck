@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { BasicSpinner } from './components/spinners/BasicSpinner';
 import { SpotifyContext } from './contexts/spotifyContext/SpotifyContex';
-import { CLIENT_ID, REDIRECT_URI, SCOPES } from './hooks/oauth2/constants';
+import { CLIENT_ID, REDIRECT_URI, SCOPES } from './routes/oauth2/constants';
 
 export const AuthGuard = () => {
   const [sdk, setSdk] = useState<SpotifyApi | null>(null);
