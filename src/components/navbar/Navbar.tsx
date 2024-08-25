@@ -7,18 +7,15 @@ export const Navbar = () => {
 
   const currentItem = location.pathname.split('/')[1];
 
-  const searchCss = clsx(currentItem === 'search' ? 'text-white' : 'text-dark-subdued');
-  const libraryCss = clsx(currentItem === 'library' ? 'text-white' : 'text-dark-subdued');
-
   const iconSize = 26;
 
   return (
     <nav className="backdrop-blur bg-black/50 h-14 w-screen fixed bottom-0 left-0 flex flex-row justify-around items-center">
       <Link to="/search">
-        <Search size={iconSize} className={searchCss} />
+        <Search size={iconSize} className={clsx(currentItem === 'search' ? 'stroke-white' : 'text-subdued')} />
       </Link>
       <Link to="/library">
-        <Library size={iconSize} className={libraryCss} />
+        <Library size={iconSize} className={clsx(currentItem === 'library' ? 'stroke-white' : 'text-subdued')} />
       </Link>
     </nav>
   );
