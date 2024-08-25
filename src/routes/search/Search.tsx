@@ -1,19 +1,18 @@
-import { FeaturedPlaylists, ItemTypes, SearchResults } from '@spotify/web-api-ts-sdk';
+import { FeaturedPlaylists, PartialSearchResult } from '@spotify/web-api-ts-sdk';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getFeaturedPlaylists } from '../../api/endpoints/browse/featuredPlaylists';
-import { search } from '../../api/endpoints/search/search';
 import { TrackListItem } from '../../components/list-items/TrackListItem';
 import { Navbar } from '../../components/navbar/Navbar';
 import { PlaylistCard } from '../../components/playlist-card/PlaylistCard';
 import { RouteHeading } from '../../components/route-heading/RouteHeading';
 import { MainSearchBar } from '../../components/searchbars/MainSearchBar';
 import { EmptyState } from '../../EmptyState';
+import { useSpotify } from '../../hooks/useSpotify';
 
 export const Search = () => {
-  const [searchResults, setSearchResults] = useState<SearchResults<ItemTypes[]> | null>(null);
-
+  const [searchResults, setSearchResults] = useState<Required<Pick<PartialSearchResult, 'playlists'>> | null>(null);
   const [featuredPlaylists, setFeaturedPlaylists] = useState<FeaturedPlaylists | null>(null);
+  const spotify = useSpotify();
 
   const onSearchBarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
@@ -23,18 +22,14 @@ export const Search = () => {
       return;
     }
 
-    const results = await search({ query, type: ['playlist'], limit: 8 });
-    setSearchResults(results);
+    setSearchResults(await spotify.search(query, ['playlist'], undefined, 8));
   };
 
   useEffect(() => {
-    getFeaturedPlaylists({})
-      .then((playlists) => setFeaturedPlaylists(playlists))
-      .catch((e) => {
-        console.error(e);
-        setFeaturedPlaylists(null);
-      });
-  }, []);
+    void (async () => {
+      setFeaturedPlaylists(await spotify.browse.getFeaturedPlaylists());
+    })();
+  }, [spotify]);
 
   return (
     <>

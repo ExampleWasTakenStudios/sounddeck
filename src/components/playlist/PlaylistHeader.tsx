@@ -16,7 +16,13 @@ export const PlaylistHeader = ({
 }: PlaylistHeaderProps) => {
   return (
     <div className="flex flex-col gap-2">
-      <img className="w-52 rounded self-center" src={coverUrl} alt={`Cover of ${title} by ${owner}.`} />
+      <img
+        className="w-52 rounded self-center"
+        src={coverUrl}
+        alt={`Cover of ${title} by ${owner}.`}
+        width={208}
+        height={208}
+      />
       <h1 className="text-lg">{title}</h1>
       <p className="text-subdued text-xs">{description}</p>
       <div className="flex flex-row items-center gap-2">
