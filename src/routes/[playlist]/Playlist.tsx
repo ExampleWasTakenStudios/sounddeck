@@ -47,6 +47,8 @@ export const Playlist = () => {
       return;
     }
 
+    setSaveActive(false);
+
     const playlistItems = await recursivelyGetPlaylistItems(playlistId);
 
     console.log('FINAL ITEMS:', playlistItems);
@@ -64,6 +66,9 @@ export const Playlist = () => {
 
     const uris: string[] = [];
     for (const item of playlistItems) {
+      if (!item.track) {
+        continue;
+      }
       uris.push(item.track.uri);
     }
 
@@ -76,7 +81,6 @@ export const Playlist = () => {
     }
 
     navigate(`/playlist/${createdPlaylist.id}`);
-    setSaveActive(false);
   };
 
   useEffect(() => {
