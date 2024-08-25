@@ -9,7 +9,7 @@ import { TrackListItem } from '../components/list-items/TrackListItem';
 import { Navbar } from '../components/navbar/Navbar';
 import { PlaylistCard } from '../components/playlist-card/PlaylistCard';
 import { PlaylistHeader } from '../components/playlist/PlaylistHeader';
-import { MainSearchBar } from '../components/searchbars/MainSearchBar';
+import { MainSearchBar } from '../components/searchbars/mainSearchBar/MainSearchBar';
 import { BasicSpinner } from '../components/spinners/BasicSpinner';
 import { EmptyState } from '../EmptyState';
 

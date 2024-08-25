@@ -1,11 +1,11 @@
 import { FeaturedPlaylists, PartialSearchResult } from '@spotify/web-api-ts-sdk';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TrackListItem } from '../../components/list-items/TrackListItem';
 import { Navbar } from '../../components/navbar/Navbar';
 import { PlaylistCard } from '../../components/playlist-card/PlaylistCard';
 import { RouteHeading } from '../../components/route-heading/RouteHeading';
-import { MainSearchBar } from '../../components/searchbars/MainSearchBar';
+import { MainSearchBar } from '../../components/searchbars/mainSearchBar/MainSearchBar';
+import { MainSearchSuggestions } from '../../components/searchbars/mainSearchBar/MainSearchSuggestions';
 import { EmptyState } from '../../EmptyState';
 import { useSpotify } from '../../hooks/useSpotify';
 
@@ -40,9 +40,9 @@ export const Search = () => {
         suggestions={searchResults?.playlists?.items.map((playlist) => {
           return (
             <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
-              <TrackListItem
+              <MainSearchSuggestions
                 title={playlist.name}
-                artist={playlist.owner.display_name}
+                artists={playlist.owner.display_name}
                 coverUrl={playlist.images[0].url}
               />
             </Link>
