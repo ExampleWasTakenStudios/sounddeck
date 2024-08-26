@@ -72,8 +72,6 @@ export const Playlist = () => {
       uris.push(item.track.uri);
     }
 
-    console.log('URIs:', uris);
-
     try {
       await spotify.playlists.addItemsToPlaylist(createdPlaylist.id, uris);
     } catch (e) {
@@ -93,8 +91,6 @@ export const Playlist = () => {
         const currentUser = await spotify.currentUser.profile();
         const playlist = await spotify.playlists.getPlaylist(playlistId);
         const playlistOwner = await spotify.users.profile(playlist.owner.id);
-
-        console.log('PLAYLIST:', playlist);
 
         setCurrentUser(currentUser);
         setPlaylist(playlist);
