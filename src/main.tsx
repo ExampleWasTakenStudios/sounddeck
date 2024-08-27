@@ -7,6 +7,7 @@ import { Root } from './Root';
 import { DesignSystem } from './routes/DesignSystem';
 import { RootIndex } from './routes/RootIndex';
 import { Playlist } from './routes/[playlist]/Playlist';
+import { SavePlaylist } from './routes/[playlist]/SavePlaylist';
 import { Login } from './routes/login/Login';
 import { OAuth2 } from './routes/oauth2/OAuth2';
 import { Search } from './routes/search/Search';
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
           {
             path: '/playlist/:playlistId',
             element: <Playlist />,
+          },
+          {
+            path: '/playlist/:playlistId/save',
+            element: <SavePlaylist />,
           },
         ],
       },
