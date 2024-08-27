@@ -12,6 +12,7 @@ import { Login } from './routes/login/Login';
 import { OAuth2 } from './routes/oauth2/OAuth2';
 import { Search } from './routes/search/Search';
 import './tailwind.css';
+import { Library } from './routes/library/Libary';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
           {
             path: 'search',
             element: <Search />,
+          },
+          {
+            path: 'library',
+            element: <Library />,
           },
           {
             path: '/playlist/:playlistId',

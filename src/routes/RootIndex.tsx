@@ -20,6 +20,11 @@ export const RootIndex = () => {
             Search
           </Link>
         </li>
+        <li className="list-disc">
+          <Link className="text-green underline underline-offset-2" to="/library">
+            Library
+          </Link>
+        </li>
       </ul>
     </>
   );
