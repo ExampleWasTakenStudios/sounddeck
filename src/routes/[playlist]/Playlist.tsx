@@ -1,12 +1,9 @@
-import { PlaylistedTrack, Playlist as SpotifyPlaylist, Track, User } from '@spotify/web-api-ts-sdk';
+import { Playlist as SpotifyPlaylist, Track, User } from '@spotify/web-api-ts-sdk';
 import { Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BackButton } from '../../components/back-button/BackButton';
-import { PrimaryButton } from '../../components/button/PrimaryButton';
-import { SecondaryButton } from '../../components/button/SecondaryButton';
 import { Fab } from '../../components/fab/Fab';
-import { TextInput } from '../../components/inputs/TextInput';
 import { TrackListItem } from '../../components/list-items/TrackListItem';
 import { Navbar } from '../../components/navbar/Navbar';
 import { PlaylistHeader } from '../../components/playlist/PlaylistHeader';
@@ -22,64 +19,6 @@ export const Playlist = () => {
 
   const [playlist, setPlaylist] = useState<SpotifyPlaylist | null>(null);
   const [playlistOwner, setPlaylistOwner] = useState<User | null>(null);
-
-  // Save Playlist logic
-  const [saveActive, setSaveActive] = useState(false);
-  const [newPlaylistName, setPlaylistName] = useState('');
-
-  const recursivelyGetPlaylistItems = async (playlistId: string, offset = 0) => {
-    let items: PlaylistedTrack<Track>[] = [];
-
-    const playlistItems = await spotify.playlists.getPlaylistItems(playlistId, undefined, undefined, 50, offset);
-
-    items = items.concat(playlistItems.items);
-
-    if (playlistItems.next) {
-      offset += playlistItems.limit;
-      items = items.concat(await recursivelyGetPlaylistItems(playlistId, offset));
-    }
-
-    return items;
-  };
-
-  const playlistSaveHandler = async () => {
-    if (!newPlaylistName || !playlist || !playlistId) {
-      return;
-    }
-
-    setSaveActive(false);
-
-    const playlistItems = await recursivelyGetPlaylistItems(playlistId);
-
-    console.log('FINAL ITEMS:', playlistItems);
-
-    if (playlistItems.length < 1) {
-      console.error('No playlist items');
-      return;
-    }
-
-    const createdPlaylist = await spotify.playlists.createPlaylist((await spotify.currentUser.profile()).id, {
-      name: newPlaylistName,
-      public: false,
-      collaborative: false,
-    });
-
-    const uris: string[] = [];
-    for (const item of playlistItems) {
-      if (!item.track) {
-        continue;
-      }
-      uris.push(item.track.uri);
-    }
-
-    try {
-      await spotify.playlists.addItemsToPlaylist(createdPlaylist.id, uris);
-    } catch (e) {
-      console.error(e);
-    }
-
-    navigate(`/playlist/${createdPlaylist.id}`);
-  };
 
   useEffect(() => {
     if (!playlistId) {
@@ -140,30 +79,12 @@ export const Playlist = () => {
       )}
 
       {playlist && currentUser && playlist.owner.id !== currentUser.id && (
-        <Fab onClick={() => setSaveActive(true)}>
+        <Fab onClick={() => navigate('save')}>
           <Save />
         </Fab>
       )}
 
       <Navbar />
-
-      {saveActive && (
-        <div className="fixed inset-0 backdrop-blur-lg bg-transparent bg-gradient-to-b from-purple/50 to-green/50 flex flex-col justify-center items-center gap-5">
-          <TextInput
-            placeholder="Give your playlist a name."
-            onChange={(event) => setPlaylistName(event.target.value)}
-          />
-          <div className="flex flex-row justify-around gap-3">
-            <SecondaryButton content="Cancel" onClick={() => setSaveActive(false)} width={80} />
-            <PrimaryButton
-              content="Save"
-              onClick={() => void playlistSaveHandler()}
-              disabled={!newPlaylistName}
-              width={80}
-            />
-          </div>
-        </div>
-      )}
     </>
   );
 };
