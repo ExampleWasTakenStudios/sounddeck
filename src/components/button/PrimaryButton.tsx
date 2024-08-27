@@ -1,17 +1,7 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { IButtonProps } from './IButtonProps';
 
-interface PrimaryButtonProps {
-  content: string;
-  type: 'submit' | 'reset' | 'button';
-  icon?: ReactNode;
-  disabled?: boolean;
-  width?: number;
-  height?: number;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-}
-
-export const PrimaryButton = ({ content, type, icon, disabled, width, height, onClick }: PrimaryButtonProps) => {
+export const PrimaryButton = ({ content, type, icon, disabled, width, height, onClick }: IButtonProps) => {
   const css = clsx(
     'bg-green text-white px-3 py-2 rounded flex flex-row justify-center items-center gap-1 text-center cursor-pointer',
     disabled && 'opacity-75 cursor-not-allowed active:bg-green',

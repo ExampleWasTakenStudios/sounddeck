@@ -22,6 +22,7 @@ export const DesignSystem = () => {
         </Fab>
         <PrimaryButton
           content="Login with Spotify"
+          type="button"
           icon={<img className="w-4 aspect-square" src="/img/spotify/icons/Spotify_Icon_Black.png"></img>}
           onClick={() => console.log('login button clicked')}
         />
@@ -29,6 +30,7 @@ export const DesignSystem = () => {
       <div>
         <SecondaryButton
           content="Login with Spotify"
+          type="button"
           icon={<img className="w-4 aspect-square" src="/img/spotify/icons/Spotify_Icon_White.png"></img>}
           onClick={() => console.log('login button clicked')}
         />
@@ -63,7 +65,7 @@ export const DesignSystem = () => {
       </div>
 
       <EmptyState content="Save some mixes and watch them appear here.">
-        <PrimaryButton content="Search Mixes" onClick={() => {}} />
+        <PrimaryButton content="Search Mixes" type="button" onClick={() => {}} />
       </EmptyState>
 
       <div>

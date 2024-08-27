@@ -85,7 +85,7 @@ export const SavePlaylist = () => {
             onChange={(event) => setNewPlaylistName(event.target.value)}
           />
           <div className="flex flex-row justify-around gap-3">
-            <SecondaryButton content="Cancel" onClick={() => navigate(-1)} width={80} />
+            <SecondaryButton content="Cancel" type="button" onClick={() => navigate(-1)} width={80} />
             <PrimaryButton content="Save" type="submit" onClick={() => void onSubmit()} disabled={false} width={80} />
           </div>
         </>
