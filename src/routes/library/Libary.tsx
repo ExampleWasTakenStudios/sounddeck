@@ -28,6 +28,8 @@ export const Library = () => {
         <>
           <RouteHeading title="Your Library" userProfilePictureUrl={currentUser.images[0].url} />
 
+          <p className="text-subdued italic">Only your saved playlists are shown.</p>
+
           {playlists.items.map((playlist) => {
             return (
               <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
