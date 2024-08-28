@@ -30,6 +30,8 @@ export const Library = () => {
 
           <p className="text-subdued italic">Only your saved playlists are shown.</p>
 
+          <hr className="text-green" />
+
           {playlists.items.map((playlist) => {
             return (
               <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
