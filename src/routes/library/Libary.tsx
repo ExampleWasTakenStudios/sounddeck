@@ -1,5 +1,6 @@
 import { Page, SimplifiedPlaylist, User } from '@spotify/web-api-ts-sdk';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { PlaylistItem } from '../../components/list-items/PlaylistItem';
 import { Navbar } from '../../components/navbar/Navbar';
 import { RouteHeading } from '../../components/route-heading/RouteHeading';
@@ -27,14 +28,15 @@ export const Library = () => {
         <>
           <RouteHeading title="Your Library" userProfilePictureUrl={currentUser.images[0].url} />
 
-          {playlists.items.map((item) => {
+          {playlists.items.map((playlist) => {
             return (
-              <PlaylistItem
-                title={item.name}
-                owner={item.owner.display_name}
-                coverUrl={item.images[0].url}
-                key={item.id}
-              />
+              <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
+                <PlaylistItem
+                  title={playlist.name}
+                  owner={playlist.owner.display_name}
+                  coverUrl={playlist.images[0].url}
+                />
+              </Link>
             );
           })}
         </>
