@@ -1,3 +1,4 @@
+import { ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../../components/button/PrimaryButton';
 
@@ -8,7 +9,7 @@ export const Login = () => {
     <main className="px-4 py-10 bg-black text-white min-h-screen flex flex-col items-center gap-5">
       <h1 className="font-bold text-3xl text-center">Welcome to SoundDeck!</h1>
 
-      <hr className="my-5 border-b border-dark-subdued w-full" />
+      <hr className="my-5 text-dark-subdued w-full" />
 
       <div className="flex flex-col gap-2 text-subdued text-md">
         <p>To use SoundDeck you need a Spotify Account.</p>
@@ -37,13 +38,9 @@ export const Login = () => {
           </a>
           .
         </p>
-        <p>
-          All information is stored exclusively on this device. We never share your data with anyone except Spotify for
-          the above mentioned functionality.
-        </p>
       </div>
 
-      <hr className="my-5 border-b border-dark-subdued w-full" />
+      <hr className="my-5 text-dark-subdued w-full" />
 
       <div className="w-full flex flex-col gap-5">
         <h2 className="text-2xl font-medium text-center">Log in to Spotify</h2>
@@ -58,7 +55,42 @@ export const Login = () => {
         </p>
       </div>
 
-      <hr className="my-5 border-b border-dark-subdued w-full" />
+      <hr className="my-5 text-dark-subdued w-full" />
+
+      <div className="w-full flex flex-col gap-2 text-subdued">
+        <p>All information is stored exclusively on this device.</p>
+        <p>
+          SoundDeck uses Cloudflare which may use Cookies. For more information please see their{' '}
+          <a
+            className="text-green underline underline-offset-1"
+            href="https://www.cloudflare.com/privacypolicy/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Privacy&nbsp;Policy
+            <span className="whitespace-nowrap">
+              &nbsp;
+              <ExternalLink className="inline-block" size={16} />
+            </span>
+          </a>{' '}
+          and{' '}
+          <a
+            className="text-green underline underline-offset-1"
+            href="https://www.cloudflare.com/cookie-policy/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Cookie&nbsp;Policy
+            <span className="whitespace-nowrap">
+              &nbsp;
+              <ExternalLink className="inline-block" size={16} />
+            </span>
+          </a>
+          .
+        </p>
+      </div>
+
+      <hr className="my-5 text-dark-subdued w-full" />
 
       <div className="w-full flex flex-col justify-center items-center gap-2 text-subdued">
         <p>SoundDeck is 100% open source!</p>
