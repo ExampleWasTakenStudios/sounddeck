@@ -6,7 +6,7 @@ interface PlaylistItemProps {
 
 export const PlaylistItem = ({ title, owner, coverUrl }: PlaylistItemProps) => {
   return (
-    <div className="w-full flex flex-row items-center gap-2 transition-transform ease-out active:scale-95">
+    <div className="w-full flex flex-row items-center gap-3 transition-transform ease-out active:scale-95">
       <img
         className="h-14 rounded-sm"
         src={coverUrl}

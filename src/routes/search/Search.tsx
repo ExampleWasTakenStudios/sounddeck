@@ -41,7 +41,7 @@ export const Search = () => {
     <>
       {currentUser && featuredPlaylists ? (
         <>
-          <RouteHeading title="Search" userProfilePictureUrl={currentUser?.images[0].url} />
+          <RouteHeading title="Search" userProfilePictureUrl={currentUser.images[0].url} />
 
           <MainSearchBar
             onChange={(event) => void onSearchBarChange(event)}
