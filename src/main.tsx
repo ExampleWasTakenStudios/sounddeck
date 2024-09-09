@@ -8,11 +8,11 @@ import { DesignSystem } from './routes/DesignSystem';
 import { RootIndex } from './routes/RootIndex';
 import { Playlist } from './routes/[playlist]/Playlist';
 import { SavePlaylist } from './routes/[playlist]/SavePlaylist';
+import { Library } from './routes/library/Libary';
 import { Login } from './routes/login/Login';
 import { OAuth2 } from './routes/oauth2/OAuth2';
 import { Search } from './routes/search/Search';
 import './tailwind.css';
-import { Library } from './routes/library/Libary';
 
 const router = createBrowserRouter([
   {
