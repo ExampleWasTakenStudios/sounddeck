@@ -78,18 +78,15 @@ export const Library = () => {
                       content="Load more"
                       type="button"
                       onClick={() => {
-                        spotify.currentUser.playlists
-                          .playlists(LIMIT, page.limit + page.offset)
-                          .then((res) => {
-                            setPage(res);
-                            setItems((prevState) => {
-                              if (prevState) {
-                                return [...prevState, ...res.items];
-                              }
-                              return [...res.items];
-                            });
-                          })
-                          .catch((e) => console.error(e));
+                        void spotify.currentUser.playlists.playlists(LIMIT, page.limit + page.offset).then((res) => {
+                          setPage(res);
+                          setItems((prevState) => {
+                            if (prevState) {
+                              return [...prevState, ...res.items];
+                            }
+                            return [...res.items];
+                          });
+                        });
                       }}
                     />
                   )}
