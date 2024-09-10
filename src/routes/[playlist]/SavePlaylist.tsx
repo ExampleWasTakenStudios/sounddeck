@@ -87,12 +87,7 @@ export const SavePlaylist = () => {
             />
             <div className="flex flex-row justify-around gap-3">
               <SecondaryButton content="Cancel" type="button" onClick={() => navigate(-1)} width={80} />
-              <PrimaryButton
-                content="Save"
-                type="submit"
-                /* onClick={() => void onSubmit()}  */ disabled={false}
-                width={80}
-              />
+              <PrimaryButton content="Save" type="submit" disabled={false} width={80} />
             </div>
           </form>
         </>
