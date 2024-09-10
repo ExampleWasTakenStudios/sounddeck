@@ -12,7 +12,7 @@ export const SecondaryButton = ({ content, type, icon, disabled, width, height, 
     <button
       type={type}
       className={css}
-      onClick={(event) => !disabled && onClick(event)}
+      onClick={(event) => !disabled && onClick && onClick(event)}
       style={{ width: width, height: height }}
     >
       {icon && <div className="align-middle">{icon}</div>}

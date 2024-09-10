@@ -77,17 +77,24 @@ export const SavePlaylist = () => {
   };
 
   return (
-    <div className="fixed inset-0 backdrop-blur-lg bg-transparent bg-gradient-to-b from-purple/50 to-green/50 flex flex-col justify-center items-center gap-5">
+    <div className="fixed inset-0 backdrop-blur-lg bg-transparent bg-gradient-to-b from-purple/50 to-green/50 flex flex-col justify-center items-center">
       {!creatingPlaylist ? (
         <>
-          <TextInput
-            placeholder="Give your playlist a name."
-            onChange={(event) => setNewPlaylistName(event.target.value)}
-          />
-          <div className="flex flex-row justify-around gap-3">
-            <SecondaryButton content="Cancel" type="button" onClick={() => navigate(-1)} width={80} />
-            <PrimaryButton content="Save" type="submit" onClick={() => void onSubmit()} disabled={false} width={80} />
-          </div>
+          <form className="flex flex-col gap-5" onSubmit={() => void onSubmit()}>
+            <TextInput
+              placeholder="Give your playlist a name."
+              onChange={(event) => setNewPlaylistName(event.target.value)}
+            />
+            <div className="flex flex-row justify-around gap-3">
+              <SecondaryButton content="Cancel" type="button" onClick={() => navigate(-1)} width={80} />
+              <PrimaryButton
+                content="Save"
+                type="submit"
+                /* onClick={() => void onSubmit()}  */ disabled={false}
+                width={80}
+              />
+            </div>
+          </form>
         </>
       ) : (
         <BasicSpinner />

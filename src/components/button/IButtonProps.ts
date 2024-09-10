@@ -7,5 +7,5 @@ export interface IButtonProps {
   disabled?: boolean;
   width?: number;
   height?: number;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
