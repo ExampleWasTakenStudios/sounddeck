@@ -21,8 +21,6 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
         console.error('Error while trying to fetch playlist owner:', e);
         setOwner(null);
       });
-
-    console.log(playlist.description);
   }, [playlist.owner.id, spotify.users]);
 
   return (
