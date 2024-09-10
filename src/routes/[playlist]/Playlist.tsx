@@ -11,6 +11,7 @@ import { PlaylistHeader } from '../../components/playlist/PlaylistHeader';
 import { BasicSpinner } from '../../components/spinners/BasicSpinner';
 import { EmptyState } from '../../EmptyState';
 import { useSpotify } from '../../hooks/useSpotify';
+import React from 'react';
 
 const LIMIT = 50;
 
@@ -99,7 +100,7 @@ export const Playlist = () => {
               }
 
               return (
-                <>
+                <React.Fragment key={crypto.randomUUID()}>
                   <TrackListItem
                     key={castedTrack.id}
                     title={castedTrack.name}
@@ -128,7 +129,7 @@ export const Playlist = () => {
                       }}
                     />
                   )}
-                </>
+                </React.Fragment>
               );
             })
           ) : (
