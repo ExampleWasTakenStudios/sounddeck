@@ -1,5 +1,5 @@
 import { Page, SimplifiedPlaylist, User } from '@spotify/web-api-ts-sdk';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PrimaryButton } from '../../components/button/PrimaryButton';
 import { PlaylistItem } from '../../components/list-items/PlaylistItem';
@@ -65,33 +65,33 @@ export const Library = () => {
                     <PlaylistItem title={item.name} owner={item.owner.display_name} coverUrl={item.images[0].url} />
                   </Link>
                 );
-              }
-
-              return (
-                <>
-                  <Link to={`/playlist/${item.id}`} key={item.id}>
-                    <PlaylistItem title={item.name} owner={item.owner.display_name} coverUrl={item.images[0].url} />
-                  </Link>
-                  {page.next && (
-                    <PrimaryButton
-                      key={crypto.randomUUID()}
-                      content="Load more"
-                      type="button"
-                      onClick={() => {
-                        void spotify.currentUser.playlists.playlists(LIMIT, page.limit + page.offset).then((res) => {
-                          setPage(res);
-                          setItems((prevState) => {
-                            if (prevState) {
-                              return [...prevState, ...res.items];
-                            }
-                            return [...res.items];
+              } else {
+                return (
+                  <React.Fragment key={crypto.randomUUID()}>
+                    <Link to={`/playlist/${item.id}`} key={item.id}>
+                      <PlaylistItem title={item.name} owner={item.owner.display_name} coverUrl={item.images[0].url} />
+                    </Link>
+                    {page.next && (
+                      <PrimaryButton
+                        key={crypto.randomUUID()}
+                        content="Load more"
+                        type="button"
+                        onClick={() => {
+                          void spotify.currentUser.playlists.playlists(LIMIT, page.limit + page.offset).then((res) => {
+                            setPage(res);
+                            setItems((prevState) => {
+                              if (prevState) {
+                                return [...prevState, ...res.items];
+                              }
+                              return [...res.items];
+                            });
                           });
-                        });
-                      }}
-                    />
-                  )}
-                </>
-              );
+                        }}
+                      />
+                    )}
+                  </React.Fragment>
+                );
+              }
             })
           ) : (
             <EmptyState content="Your library seems to be empty." />
