@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthGuard } from './AuthGuard';
 import { ErrorPage } from './ErrorPage';
 import { Root } from './Root';
-import { DesignSystem } from './routes/DesignSystem';
 import { RootIndex } from './routes/RootIndex';
 import { Playlist } from './routes/[playlist]/Playlist';
 import { SavePlaylist } from './routes/[playlist]/SavePlaylist';
@@ -48,10 +47,6 @@ const router = createBrowserRouter([
             element: <SavePlaylist />,
           },
         ],
-      },
-      {
-        path: 'design-system',
-        element: <DesignSystem />,
       },
     ],
   },

@@ -1,6 +1,6 @@
 import { Page, PlaylistedTrack, Playlist as SpotifyPlaylist, Track, TrackItem, User } from '@spotify/web-api-ts-sdk';
 import { Save } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BackButton } from '../../components/back-button/BackButton';
 import { PrimaryButton } from '../../components/button/PrimaryButton';
@@ -11,7 +11,6 @@ import { PlaylistHeader } from '../../components/playlist/PlaylistHeader';
 import { BasicSpinner } from '../../components/spinners/BasicSpinner';
 import { EmptyState } from '../../EmptyState';
 import { useSpotify } from '../../hooks/useSpotify';
-import React from 'react';
 
 const LIMIT = 50;
 
@@ -22,7 +21,6 @@ export const Playlist = () => {
 
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [playlist, setPlaylist] = useState<SpotifyPlaylist | null>(null);
-  const [playlistOwner, setPlaylistOwner] = useState<User | null>(null);
 
   const [page, setPage] = useState<Page<PlaylistedTrack<Track | TrackItem>> | null>(null);
   const [items, setItems] = useState<PlaylistedTrack<Track>[] | null>(null);
@@ -37,15 +35,13 @@ export const Playlist = () => {
     void (async () => {
       const playlist = await spotify.playlists.getPlaylist(playlistId);
 
-      const [user, owner, paginatedItems] = await Promise.all([
+      const [user, paginatedItems] = await Promise.all([
         spotify.currentUser.profile(),
-        spotify.users.profile(playlist.owner.id),
         spotify.playlists.getPlaylistItems(playlistId, undefined, undefined, LIMIT, 0),
       ]);
 
       setPlaylist(playlist);
       setCurrentUser(user);
-      setPlaylistOwner(owner);
 
       if (!isMounted) {
         return;
@@ -70,13 +66,7 @@ export const Playlist = () => {
       <BackButton content="Back" />
       {playlist ? (
         <section className="flex flex-col gap-4">
-          <PlaylistHeader
-            title={playlist.name}
-            description={playlist.description}
-            owner={playlist.owner.display_name}
-            coverUrl={playlist.images[0].url}
-            ownerProfilePictureUrl={playlistOwner ? playlistOwner.images[playlistOwner.images.length - 1].url : ''}
-          />
+          <PlaylistHeader playlist={playlist} />
           {items ? (
             items.map((item, i) => {
               // for some reason the api sometimes returns invalid objects.
