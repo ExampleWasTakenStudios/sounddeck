@@ -1,5 +1,5 @@
 import { Playlist, User } from '@spotify/web-api-ts-sdk';
-import { decode } from 'html-entities';
+import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
 import { useSpotify } from '../../hooks/useSpotify';
 
@@ -22,6 +22,18 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
       });
   }, [playlist.owner.id, spotify.users]);
 
+  DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+    if (node.tagName === 'A') {
+      const href = node.getAttribute('href');
+      console.log('HREF', href);
+      if (href && /spotify:playlist:[A-Za-z0-9]+/g.test(href)) {
+        node.classList.add('text-green', 'underline', 'underline-offset-1');
+      } else {
+        node.removeAttribute('href');
+      }
+    }
+  });
+
   return (
     <div className="flex flex-col gap-2">
       <img
@@ -32,9 +44,15 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
         height={208}
       />
       <h1 className="text-lg">{playlist.name}</h1>
-      {/* TODO: This is a hacky workaround. Ideally this should not clean the anchor tags but instead take them as actual links. The href of returned anchor tags has the Spotify URI. */}
-      {/* <p className="text-subdued text-xs">{DOMPurify.sanitize(decode(playlist.description), { FORBID_TAGS: ['a'] })}</p> */}
-      <p className="text-subdued text-xs">{decode(playlist.description)}</p>
+      <p
+        className="text-subdued text-xs"
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(playlist.description, {
+            ALLOWED_ATTR: ['href', 'class'],
+            ALLOWED_URI_REGEXP: /^spotify:playlist:[A-Za-z0-9]+$/,
+          }),
+        }}
+      ></p>
       <div className="flex flex-row items-center gap-2">
         {owner && owner.images.length > 0 && (
           <img
