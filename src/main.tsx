@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthGuard } from './AuthGuard';
 import { ErrorPage } from './ErrorPage';
 import { Root } from './Root';
-import { RootIndex } from './routes/RootIndex';
 import { Playlist } from './routes/[playlist]/Playlist';
 import { SavePlaylist } from './routes/[playlist]/SavePlaylist';
 import { Library } from './routes/library/Libary';
@@ -15,14 +14,14 @@ import './tailwind.css';
 
 const router = createBrowserRouter([
   {
+    index: true,
+    element: <Login />,
+  },
+  {
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        element: <RootIndex />,
-      },
       {
         element: <AuthGuard />,
         children: [
