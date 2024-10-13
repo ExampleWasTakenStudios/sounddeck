@@ -49,7 +49,7 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
 
         <div className="sm:flex sm:flex-col sm:gap-2">
           <p
-            className="text-subdued text-xs"
+            className="text-subdued text-xs sm:text-sm"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(playlist.description, {
                 ALLOWED_ATTR: ['href', 'class'],
@@ -58,18 +58,25 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
             }}
           ></p>
 
-          <div className="flex flex-row items-center gap-2">
+          <>
             {owner && owner.images.length > 0 && (
-              <img
-                className="h-4 rounded-full"
-                src={owner.images[owner.images.length - 1].url}
-                alt={`Profile picture of ${owner.display_name}`}
-                width={16}
-                height={16}
-              />
+              <a
+                className="flex flex-row items-center gap-2"
+                href={owner.external_urls.spotify}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <img
+                  className="h-4 rounded-full"
+                  src={owner.images[owner.images.length - 1].url}
+                  alt={`Profile picture of ${owner.display_name}`}
+                  width={16}
+                  height={16}
+                />
+                <p className="text-sm font-bold">{playlist.owner.display_name}</p>
+              </a>
             )}
-            <p className="text-sm font-bold">{playlist.owner.display_name}</p>
-          </div>
+          </>
         </div>
       </div>
     </div>
