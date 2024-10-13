@@ -56,7 +56,7 @@ export const Login = () => {
             content="Log In with Spotify"
             type="button"
             onClick={() => navigate('/oauth2')}
-            icon={<img src="/img/spotify/icons/Spotify_Icon_White.png" alt="Spotify Icon" width={20} height={20} />}
+            icon={<img src="/img/spotify/icons/Spotify_Icon_Black.png" alt="Spotify Icon" width={20} height={20} />}
           />
           <p className="text-subdued text-center text-sm font-thin">
             SoundDeck is neither endorsed nor associated by or with Spotify AB.
