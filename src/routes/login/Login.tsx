@@ -14,7 +14,7 @@ export const Login = () => {
 
   return (
     <div className="bg-black flex justify-center">
-      <main className="px-4 py-10 bg-black text-white border-r border-l border-dark-subdued drop-shadow-[0_0_2em_#400073aa] min-h-screen max-w-md flex flex-col items-center gap-5">
+      <main className="px-4 py-10 bg-black text-white drop-shadow-[0_0_2em_#400073aa] min-h-screen max-w-md flex flex-col items-center gap-5">
         <h1 className="font-bold text-3xl text-center">Welcome to SoundDeck!</h1>
 
         <hr className="my-5 text-dark-subdued w-full" />
