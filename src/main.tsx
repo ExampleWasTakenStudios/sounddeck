@@ -14,14 +14,14 @@ import './tailwind.css';
 
 const router = createBrowserRouter([
   {
+    index: true,
+    element: <Login />,
+  },
+  {
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        index: true,
-        element: <Login />,
-      },
       {
         element: <AuthGuard />,
         children: [
