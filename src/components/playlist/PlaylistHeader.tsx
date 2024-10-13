@@ -49,7 +49,7 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
 
         <div className="sm:flex sm:flex-col sm:gap-2">
           <p
-            className="text-subdued text-xs sm:text-sm"
+            className="text-subdued text-xs my-2 sm:text-sm sm:my-0"
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(playlist.description, {
                 ALLOWED_ATTR: ['href', 'class'],
