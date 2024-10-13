@@ -9,7 +9,7 @@ export const BackButton = ({ content }: BackButtonProps) => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-row cursor-pointer md:hidden" onClick={() => navigate(-1)}>
+    <div className="flex flex-row cursor-pointer sm:hidden" onClick={() => navigate(-1)}>
       <ChevronLeft />
       <p>{content}</p>
     </div>
