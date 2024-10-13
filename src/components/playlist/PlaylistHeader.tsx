@@ -35,7 +35,7 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
   });
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col sm:flex-row gap-2 sm:border-b sm:border-green/50 sm:pb-4">
       <img
         className="w-52 rounded self-center"
         src={playlist.images[0].url}
@@ -43,27 +43,34 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
         width={208}
         height={208}
       />
-      <h1 className="text-lg">{playlist.name}</h1>
-      <p
-        className="text-subdued text-xs"
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(playlist.description, {
-            ALLOWED_ATTR: ['href', 'class'],
-            ALLOWED_URI_REGEXP: /^spotify:playlist:[A-Za-z0-9]+$/,
-          }),
-        }}
-      ></p>
-      <div className="flex flex-row items-center gap-2">
-        {owner && owner.images.length > 0 && (
-          <img
-            className="h-4 rounded-full"
-            src={owner.images[owner.images.length - 1].url}
-            alt={`Profile picture of ${owner.display_name}`}
-            width={16}
-            height={16}
-          />
-        )}
-        <p className="text-sm font-bold">{playlist.owner.display_name}</p>
+      <div className="sm:ml-3 sm:flex sm:flex-col sm:justify-between">
+        <div></div>
+        <h1 className="text-lg sm:text-3xl">{playlist.name}</h1>
+
+        <div className="sm:flex sm:flex-col sm:gap-2">
+          <p
+            className="text-subdued text-xs"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(playlist.description, {
+                ALLOWED_ATTR: ['href', 'class'],
+                ALLOWED_URI_REGEXP: /^spotify:playlist:[A-Za-z0-9]+$/,
+              }),
+            }}
+          ></p>
+
+          <div className="flex flex-row items-center gap-2">
+            {owner && owner.images.length > 0 && (
+              <img
+                className="h-4 rounded-full"
+                src={owner.images[owner.images.length - 1].url}
+                alt={`Profile picture of ${owner.display_name}`}
+                width={16}
+                height={16}
+              />
+            )}
+            <p className="text-sm font-bold">{playlist.owner.display_name}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
