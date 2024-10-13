@@ -30,7 +30,7 @@ export const Login = () => {
               Write access to your Spotify Library to create playlists for the songs from your mixes.
             </li>
             <li className="before:content-[''] before:bg-subdued before:mr-2 before:inline-block before:w-2 before:h-2 before:align-middle before:rounded-full">
-              Write access to your Spotify Playlists to fill playlists with the songs from your mixes.
+              Write access to your Spotify playlists to fill SoundDeck&apos;s playlists with the songs from your mixes.
             </li>
           </ul>
           <p>

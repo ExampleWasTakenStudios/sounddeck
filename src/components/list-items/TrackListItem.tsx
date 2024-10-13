@@ -9,7 +9,7 @@ interface TrackListItemProps {
 
 export const TrackListItem = ({ title, artist, explicit, coverUrl }: TrackListItemProps) => {
   return (
-    <div className="w-full flex flex-row items-center gap-2 transition-transform ease-out active:scale-95">
+    <div className="cursor-default w-full flex flex-row items-center gap-2 transition-all ease-out rounded">
       <img
         className="h-14 aspect-square object-cover rounded-sm"
         src={coverUrl}

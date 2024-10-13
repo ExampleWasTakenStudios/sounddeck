@@ -43,25 +43,27 @@ export const Search = () => {
         <>
           <RouteHeading title="Search" userProfilePictureUrl={currentUser.images[0].url} />
 
-          <MainSearchBar
-            onChange={(event) => void onSearchBarChange(event)}
-            suggestions={searchResults?.playlists?.items.map((playlist) => {
-              return (
-                <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
-                  <MainSearchSuggestions
-                    title={playlist.name}
-                    artists={playlist.owner.display_name}
-                    coverUrl={playlist.images[0].url}
-                  />
-                </Link>
-              );
-            })}
-          />
+          <div className="sm:flex sm:justify-center">
+            <MainSearchBar
+              onChange={(event) => void onSearchBarChange(event)}
+              suggestions={searchResults?.playlists?.items.map((playlist) => {
+                return (
+                  <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
+                    <MainSearchSuggestions
+                      title={playlist.name}
+                      artists={playlist.owner.display_name}
+                      coverUrl={playlist.images[0].url}
+                    />
+                  </Link>
+                );
+              })}
+            />
+          </div>
 
           <h2 className="text-xl font-thin my-2">Featured Playlists</h2>
 
           {featuredPlaylists ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
               {featuredPlaylists.playlists.items.map((playlist) => {
                 return (
                   <Link to={`/playlist/${playlist.id}`} key={playlist.id}>

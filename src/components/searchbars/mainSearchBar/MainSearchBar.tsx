@@ -9,7 +9,7 @@ interface MainSearchBarProps {
 export const MainSearchBar = ({ onChange, suggestions }: MainSearchBarProps) => {
   return (
     <>
-      <search className="relative outline-none bg-white text-black rounded px-4 py-3 flex flex-row justify-between items-center gap-3 transition-shadow focus-within:ring focus-within:ring-green">
+      <search className="relative outline-none bg-white text-black rounded px-4 py-3 sm:w-96 flex flex-row justify-between items-center gap-3 transition-shadow focus-within:ring focus-within:ring-green">
         <input
           className="w-full placeholder-dark-subdued outline-none"
           onChange={onChange}

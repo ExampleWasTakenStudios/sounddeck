@@ -1,5 +1,5 @@
 import { Page, PlaylistedTrack, Playlist as SpotifyPlaylist, Track, TrackItem, User } from '@spotify/web-api-ts-sdk';
-import { Save } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BackButton } from '../../components/back-button/BackButton';
@@ -135,7 +135,10 @@ export const Playlist = () => {
 
       {playlist && currentUser && playlist.owner.id !== currentUser.id && (
         <Fab onClick={() => navigate('save')}>
-          <Save />
+          <div className="flex justify-around items-center gap-2">
+            <Plus className="mt-[-1px]" color="#fff" size={23} />
+            <p className="text-white">Save as Playlist</p>
+          </div>
         </Fab>
       )}
 
