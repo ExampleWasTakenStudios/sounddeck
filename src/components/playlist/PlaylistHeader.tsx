@@ -35,7 +35,7 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
   });
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2 sm:border-b sm:border-green/50 sm:pb-4">
+    <div className="flex flex-col sm:flex-row gap-2 sm:border-b sm:border-green/50 sm:pb-4 sm:mb-2">
       <img
         className="w-52 rounded self-center"
         src={playlist.images[0].url}

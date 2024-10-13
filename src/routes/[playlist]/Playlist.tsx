@@ -65,7 +65,7 @@ export const Playlist = () => {
     <>
       <BackButton content="Back" />
       {playlist ? (
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4 sm:gap-0">
           <PlaylistHeader playlist={playlist} />
           {items ? (
             items.map((item, i) => {
