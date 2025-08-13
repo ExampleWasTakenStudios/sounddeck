@@ -1,15 +1,19 @@
+import { Image } from '@spotify/web-api-ts-sdk';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useOptimalImage } from '../../hooks/useOptimalImage';
 import { useSpotify } from '../../hooks/useSpotify';
 
 export interface RouteHeadingProps {
   title: string;
-  userProfilePictureUrl: string;
+  userProfilePictures: Image[];
 }
 
-export const RouteHeading = ({ title, userProfilePictureUrl }: RouteHeadingProps) => {
+export const RouteHeading = ({ title, userProfilePictures }: RouteHeadingProps) => {
   const spotify = useSpotify();
   const navigate = useNavigate();
+  const getOptimalImage = useOptimalImage();
+
   const [userSettingsOpen, setUserSettingsOpen] = useState(false);
 
   return (
@@ -19,7 +23,7 @@ export const RouteHeading = ({ title, userProfilePictureUrl }: RouteHeadingProps
         <div className="relative">
           <img
             className="w-[30px] h-[30px] rounded-full aspect-square"
-            src={userProfilePictureUrl}
+            src={getOptimalImage(userProfilePictures, 30, 30).url}
             alt="Your Profile Picture"
             width={30}
             height={30}

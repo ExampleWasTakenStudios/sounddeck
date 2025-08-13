@@ -41,7 +41,7 @@ export const Search = () => {
     <>
       {currentUser && featuredPlaylists ? (
         <>
-          <RouteHeading title="Search" userProfilePictureUrl={currentUser.images[0].url} />
+          <RouteHeading title="Search" userProfilePictures={currentUser.images} />
 
           <div className="sm:flex sm:justify-center">
             <MainSearchBar
@@ -52,7 +52,7 @@ export const Search = () => {
                     <MainSearchSuggestions
                       title={playlist.name}
                       artists={playlist.owner.display_name}
-                      coverUrl={playlist.images[0].url}
+                      covers={playlist.images}
                     />
                   </Link>
                 );

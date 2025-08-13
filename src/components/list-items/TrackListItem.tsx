@@ -1,18 +1,22 @@
+import { Image } from '@spotify/web-api-ts-sdk';
 import { CircleAlert } from 'lucide-react';
+import { useOptimalImage } from '../../hooks/useOptimalImage';
 
 interface TrackListItemProps {
   title: string;
   artist: string;
   explicit?: boolean;
-  coverUrl: string;
+  covers: Image[];
 }
 
-export const TrackListItem = ({ title, artist, explicit, coverUrl }: TrackListItemProps) => {
+export const TrackListItem = ({ title, artist, explicit, covers }: TrackListItemProps) => {
+  const getOptimalImage = useOptimalImage();
+
   return (
-    <div className="cursor-default w-full flex flex-row items-center gap-2 transition-all ease-out rounded">
+    <div className="w-full flex flex-row items-center gap-2 transition-all ease-out rounded">
       <img
         className="h-14 aspect-square object-cover rounded-sm"
-        src={coverUrl}
+        src={getOptimalImage(covers, 56, 56).url}
         alt={`Cover of ${title} by ${artist}.`}
         width={56}
         height={56}

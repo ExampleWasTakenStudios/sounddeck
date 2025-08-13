@@ -83,7 +83,7 @@ export const Playlist = () => {
                     key={castedTrack.id}
                     title={castedTrack.name}
                     artist={artistsString}
-                    coverUrl={castedTrack.album.images[0].url}
+                    covers={castedTrack.album.images}
                     explicit={castedTrack.explicit}
                   />
                 );
@@ -95,7 +95,7 @@ export const Playlist = () => {
                     key={castedTrack.id}
                     title={castedTrack.name}
                     artist={artistsString}
-                    coverUrl={castedTrack.album.images[0].url}
+                    covers={castedTrack.album.images}
                     explicit={castedTrack.explicit}
                   />
                   {page && page.next && (

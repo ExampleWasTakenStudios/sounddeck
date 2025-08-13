@@ -51,7 +51,7 @@ export const Library = () => {
     <>
       {currentUser && page ? (
         <>
-          <RouteHeading title="Your Library" userProfilePictureUrl={currentUser.images[0].url} />
+          <RouteHeading title="Your Library" userProfilePictures={currentUser.images} />
 
           <p className="text-subdued italic">Only your saved playlists are shown.</p>
 
@@ -62,14 +62,14 @@ export const Library = () => {
               if (i !== items.length - 1) {
                 return (
                   <Link to={`/playlist/${item.id}`} key={item.id}>
-                    <PlaylistItem title={item.name} owner={item.owner.display_name} coverUrl={item.images[0].url} />
+                    <PlaylistItem title={item.name} owner={item.owner.display_name} covers={item.images} />
                   </Link>
                 );
               } else {
                 return (
                   <React.Fragment key={crypto.randomUUID()}>
                     <Link to={`/playlist/${item.id}`} key={item.id}>
-                      <PlaylistItem title={item.name} owner={item.owner.display_name} coverUrl={item.images[0].url} />
+                      <PlaylistItem title={item.name} owner={item.owner.display_name} covers={item.images} />
                     </Link>
                     {page.next && (
                       <PrimaryButton

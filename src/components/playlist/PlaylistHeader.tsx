@@ -1,6 +1,7 @@
 import { Playlist, User } from '@spotify/web-api-ts-sdk';
 import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
+import { useOptimalImage } from '../../hooks/useOptimalImage';
 import { useSpotify } from '../../hooks/useSpotify';
 
 interface PlaylistHeaderProps {
@@ -9,6 +10,7 @@ interface PlaylistHeaderProps {
 
 export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
   const spotify = useSpotify();
+  const getOptimalImage = useOptimalImage();
 
   const [owner, setOwner] = useState<User | null>(null);
 
@@ -38,7 +40,7 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
     <div className="flex flex-col sm:flex-row gap-2 sm:border-b sm:border-green/50 sm:pb-4 sm:mb-2">
       <img
         className="w-52 rounded self-center"
-        src={playlist.images[0].url}
+        src={getOptimalImage(playlist.images, 208, 208).url}
         alt={`Cover of ${playlist.name} by ${playlist.owner.display_name}.`}
         width={208}
         height={208}
