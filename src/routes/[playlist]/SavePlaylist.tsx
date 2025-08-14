@@ -1,5 +1,5 @@
 import { PlaylistedTrack, SpotifyApi, Track } from '@spotify/web-api-ts-sdk';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PrimaryButton } from '../../components/button/PrimaryButton';
 import { SecondaryButton } from '../../components/button/SecondaryButton';
@@ -30,6 +30,18 @@ export const SavePlaylist = () => {
 
   const [newPlaylistName, setNewPlaylistName] = useState('');
   const [creatingPlaylist, setCreatingPlaylist] = useState(false);
+  const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
+
+  const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setNewPlaylistName(value);
+
+    if (value.length < 1) {
+      setSaveButtonDisabled(true);
+    } else {
+      setSaveButtonDisabled(false);
+    }
+  };
 
   const onSubmit = async () => {
     if (!newPlaylistName || !playlistId) {
@@ -81,13 +93,10 @@ export const SavePlaylist = () => {
       {!creatingPlaylist ? (
         <>
           <form className="flex flex-col gap-5" onSubmit={() => void onSubmit()}>
-            <TextInput
-              placeholder="Give your playlist a name."
-              onChange={(event) => setNewPlaylistName(event.target.value)}
-            />
+            <TextInput placeholder="Give your playlist a name." onChange={(event) => onInputChange(event)} />
             <div className="flex flex-row justify-around gap-3">
               <SecondaryButton content="Cancel" type="button" onClick={() => navigate(-1)} width={80} />
-              <PrimaryButton content="Save" type="submit" disabled={false} width={80} />
+              <PrimaryButton content="Save" type="submit" disabled={saveButtonDisabled} width={80} />
             </div>
           </form>
         </>

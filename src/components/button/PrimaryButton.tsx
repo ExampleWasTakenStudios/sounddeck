@@ -11,6 +11,7 @@ export const PrimaryButton = ({ content, type, icon, disabled, width, height, on
   return (
     <button
       type={type}
+      disabled={disabled}
       className={css}
       onClick={(event) => !disabled && onClick && onClick(event)}
       style={{ width: width, height: height }}
