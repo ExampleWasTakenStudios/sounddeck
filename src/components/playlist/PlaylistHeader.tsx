@@ -1,6 +1,7 @@
 import { Playlist, User } from '@spotify/web-api-ts-sdk';
 import DOMPurify from 'dompurify';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useOptimalImage } from '../../hooks/useOptimalImage';
 import { useSpotify } from '../../hooks/useSpotify';
 
@@ -38,13 +39,15 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
 
   return (
     <div className="flex flex-col sm:flex-row gap-2 sm:border-b sm:border-green/50 sm:pb-4 sm:mb-2">
-      <img
-        className="w-52 rounded self-center"
-        src={getOptimalImage(playlist.images, 208, 208).url}
-        alt={`Cover of ${playlist.name} by ${playlist.owner.display_name}.`}
-        width={208}
-        height={208}
-      />
+      <Link to={playlist.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="flex flex-col">
+        <img
+          className="w-52 rounded self-center transition-all ease-out active:scale-95"
+          src={getOptimalImage(playlist.images, 208, 208).url}
+          alt={`Cover of ${playlist.name} by ${playlist.owner.display_name}.`}
+          width={208}
+          height={208}
+        />
+      </Link>
       <div className="sm:ml-3 sm:flex sm:flex-col sm:justify-between">
         <div></div>
         <h1 className="text-lg sm:text-3xl">{playlist.name}</h1>
