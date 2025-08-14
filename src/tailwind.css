@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,6 @@
     * {
         scrollbar-color: #afafaf55 #121212;
         scrollbar-width: thin;
-        font-family: Bahnschrift, system-ui;
+        font-family: Montserrat, system-ui;
     }
 }
