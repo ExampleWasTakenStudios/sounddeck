@@ -56,12 +56,13 @@ export const Search = () => {
                 searchResult
                   ? searchResult.map((playlist) => {
                       return (
-                        <MainSearchSuggestions
-                          artists={playlist.owner.display_name}
-                          covers={playlist.images}
-                          title={playlist.name}
-                          key={playlist.id}
-                        />
+                        <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
+                          <MainSearchSuggestions
+                            artists={playlist.owner.display_name}
+                            covers={playlist.images}
+                            title={playlist.name}
+                          />
+                        </Link>
                       );
                     })
                   : null
