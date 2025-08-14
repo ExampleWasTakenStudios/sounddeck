@@ -13,7 +13,7 @@ export const MainSearchSuggestions = ({ title, artists, covers }: MainSearchSugg
   return (
     <div className="w-full flex flex-row items-center gap-2 transition-all ease-out active:scale-95">
       <img
-        className="h-14 aspect-square object-cover rounded-sm"
+        className="h-14 aspect-square object-cover rounded-sm text-white"
         src={getOptimalImage(covers, 56, 56).url}
         alt={`Cover of ${title} by ${artists}.`}
         width={56}

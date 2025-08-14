@@ -1,8 +1,6 @@
-import { FeaturedPlaylists, PartialSearchResult, UserProfile } from '@spotify/web-api-ts-sdk';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { SimplifiedPlaylist, UserProfile } from '@spotify/web-api-ts-sdk';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Navbar } from '../../components/navbar/Navbar';
-import { PlaylistCard } from '../../components/playlist-card/PlaylistCard';
 import { RouteHeading } from '../../components/route-heading/RouteHeading';
 import { MainSearchBar } from '../../components/searchbars/mainSearchBar/MainSearchBar';
 import { MainSearchSuggestions } from '../../components/searchbars/mainSearchBar/MainSearchSuggestions';
@@ -13,72 +11,60 @@ import { useSpotify } from '../../hooks/useSpotify';
 export const Search = () => {
   const spotify = useSpotify();
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
-  const [searchResults, setSearchResults] = useState<Required<Pick<PartialSearchResult, 'playlists'>> | null>(null);
-  const [featuredPlaylists, setFeaturedPlaylists] = useState<FeaturedPlaylists | null>(null);
-
-  const onSearchBarChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value;
-
-    if (query.length < 1) {
-      setSearchResults(null);
-      return;
-    }
-
-    setSearchResults(await spotify.search(query, ['playlist'], undefined, 8));
-  };
+  const [searchResult, setSearchResult] = useState<SimplifiedPlaylist[]>();
 
   useEffect(() => {
-    void (async () => {
-      setFeaturedPlaylists(await spotify.browse.getFeaturedPlaylists());
-    })();
-
     void (async () => {
       setCurrentUser(await spotify.currentUser.profile());
     })();
   }, [spotify]);
 
+  const onSearchBarChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+
+    if (query.length < 1) return;
+
+    const result = await spotify.search(query, ['playlist'], undefined, 8);
+
+    const items = result.playlists.items.filter((item) => {
+      if (item) {
+        return true;
+      }
+      return false;
+    }) as unknown as SimplifiedPlaylist[];
+
+    setSearchResult(items);
+  };
+
   return (
     <>
-      {currentUser && featuredPlaylists ? (
+      {currentUser ? (
         <>
           <RouteHeading title="Search" userProfilePictures={currentUser.images} />
 
           <div className="sm:flex sm:justify-center">
             <MainSearchBar
               onChange={(event) => void onSearchBarChange(event)}
-              suggestions={searchResults?.playlists?.items.map((playlist) => {
-                return (
-                  <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
-                    <MainSearchSuggestions
-                      title={playlist.name}
-                      artists={playlist.owner.display_name}
-                      covers={playlist.images}
-                    />
-                  </Link>
-                );
-              })}
+              suggestions={
+                searchResult
+                  ? searchResult.map((playlist) => {
+                      return (
+                        <MainSearchSuggestions
+                          artists={playlist.owner.display_name}
+                          covers={playlist.images}
+                          title={playlist.name}
+                          key={playlist.id}
+                        />
+                      );
+                    })
+                  : null
+              }
             />
           </div>
 
           <h2 className="text-xl font-thin my-2">Featured Playlists</h2>
 
-          {featuredPlaylists ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5">
-              {featuredPlaylists.playlists.items.map((playlist) => {
-                return (
-                  <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
-                    <PlaylistCard
-                      title={playlist.name}
-                      width={playlist.images[0].width}
-                      coverUrl={playlist.images[0].url}
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-          ) : (
-            <EmptyState content="We'd love to recommend you something good but we're just as clueless as you." />
-          )}
+          <EmptyState content="We'd love to recommend you something good but we're just as clueless as you." />
         </>
       ) : (
         <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center">

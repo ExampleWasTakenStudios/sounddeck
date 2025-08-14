@@ -5,7 +5,6 @@ import { Image } from '@spotify/web-api-ts-sdk';
  */
 export const useOptimalImage = () => {
   return (images: Image[], requiredHeight: number, requiredWidth: number): Image => {
-    console.log('Images:', images);
     // no defined dimensions means there is only one size and we can return the image early
     if (images[0].height === null || images[0].width === null) {
       return images[0];
