@@ -1,7 +1,9 @@
-import { UserProfile } from '@spotify/web-api-ts-sdk';
-import { useEffect, useState } from 'react';
+import { SimplifiedPlaylist, UserProfile } from '@spotify/web-api-ts-sdk';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Navbar } from '../../components/navbar/Navbar';
 import { RouteHeading } from '../../components/route-heading/RouteHeading';
+import { MainSearchBar } from '../../components/searchbars/mainSearchBar/MainSearchBar';
+import { MainSearchSuggestions } from '../../components/searchbars/mainSearchBar/MainSearchSuggestions';
 import { BasicSpinner } from '../../components/spinners/BasicSpinner';
 import { EmptyState } from '../../EmptyState';
 import { useSpotify } from '../../hooks/useSpotify';
@@ -9,12 +11,30 @@ import { useSpotify } from '../../hooks/useSpotify';
 export const Search = () => {
   const spotify = useSpotify();
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
+  const [searchResult, setSearchResult] = useState<SimplifiedPlaylist[]>();
 
   useEffect(() => {
     void (async () => {
       setCurrentUser(await spotify.currentUser.profile());
     })();
   }, [spotify]);
+
+  const onSearchBarChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+
+    if (query.length < 1) return;
+
+    const result = await spotify.search(query, ['playlist'], undefined, 8);
+
+    const items = result.playlists.items.filter((item) => {
+      if (item) {
+        return true;
+      }
+      return false;
+    }) as unknown as SimplifiedPlaylist[];
+
+    setSearchResult(items);
+  };
 
   return (
     <>
@@ -23,7 +43,23 @@ export const Search = () => {
           <RouteHeading title="Search" userProfilePictures={currentUser.images} />
 
           <div className="sm:flex sm:justify-center">
-            <p>Some day a search bar may replace me</p>
+            <MainSearchBar
+              onChange={(event) => void onSearchBarChange(event)}
+              suggestions={
+                searchResult
+                  ? searchResult.map((playlist) => {
+                      return (
+                        <MainSearchSuggestions
+                          artists={playlist.owner.display_name}
+                          covers={playlist.images}
+                          title={playlist.name}
+                          key={playlist.id}
+                        />
+                      );
+                    })
+                  : null
+              }
+            />
           </div>
 
           <h2 className="text-xl font-thin my-2">Featured Playlists</h2>
