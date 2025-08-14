@@ -13,7 +13,7 @@ export const ErrorPage = () => {
         alt="Taylor Swift looking disappointed"
       />
       <p className="text-subdued">We can&apos;t seem to find the page you are looking for.</p>
-      <Link to="/" className="text-green underline underline-offset-2">
+      <Link to="/" className="text-primary underline underline-offset-2">
         Home
       </Link>
     </div>

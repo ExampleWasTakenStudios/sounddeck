@@ -37,7 +37,7 @@ export const Login = () => {
             These permissions are required for SoundDeck to work. You can revoke SoundDeck&apos;s access to your account
             at any time in your{' '}
             <a
-              className="text-green underline underline-offset-1"
+              className="text-primary underline underline-offset-1"
               href="https://www.spotify.com/account/apps/"
               target="_blank"
               rel="noreferrer noopener"
@@ -70,7 +70,7 @@ export const Login = () => {
           <p>
             SoundDeck uses Cloudflare which may use Cookies. For more information please see their{' '}
             <a
-              className="text-green underline underline-offset-1"
+              className="text-primary underline underline-offset-1"
               href="https://www.cloudflare.com/privacypolicy/"
               target="_blank"
               rel="noreferrer noopener"
@@ -83,7 +83,7 @@ export const Login = () => {
             </a>{' '}
             and{' '}
             <a
-              className="text-green underline underline-offset-1"
+              className="text-primary underline underline-offset-1"
               href="https://www.cloudflare.com/cookie-policy/"
               target="_blank"
               rel="noreferrer noopener"
@@ -103,7 +103,7 @@ export const Login = () => {
         <div className="w-full flex flex-col justify-center items-center gap-2 text-subdued">
           <p>SoundDeck is 100% open source!</p>
           <a
-            className="text-green underline underline-offset-1"
+            className="text-primary underline underline-offset-1"
             href="https://github.com/ExampleWasTakenStudios/sounddeck"
           >
             Visit us on GitHub.

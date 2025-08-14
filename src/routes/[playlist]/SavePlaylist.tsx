@@ -77,7 +77,7 @@ export const SavePlaylist = () => {
   };
 
   return (
-    <div className="fixed inset-0 backdrop-blur-lg bg-transparent bg-gradient-to-b from-purple/50 to-green/50 flex flex-col justify-center items-center">
+    <div className="fixed inset-0 backdrop-blur-lg bg-transparent bg-gradient-to-b from-secondary/50 to-primary/50 flex flex-col justify-center items-center">
       {!creatingPlaylist ? (
         <>
           <form className="flex flex-col gap-5" onSubmit={() => void onSubmit()}>

@@ -30,7 +30,7 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
       const href = node.getAttribute('href');
       console.log('HREF', href);
       if (href && /spotify:playlist:[A-Za-z0-9]+/g.test(href)) {
-        node.classList.add('text-green', 'underline', 'underline-offset-1');
+        node.classList.add('text-primary', 'underline', 'underline-offset-1');
       } else {
         node.removeAttribute('href');
       }
@@ -38,7 +38,7 @@ export const PlaylistHeader = ({ playlist }: PlaylistHeaderProps) => {
   });
 
   return (
-    <div className="flex flex-col sm:flex-row gap-2 sm:border-b sm:border-green/50 sm:pb-4 sm:mb-2">
+    <div className="flex flex-col sm:flex-row gap-2 sm:border-b sm:border-primary/50 sm:pb-4 sm:mb-2">
       <Link to={playlist.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="flex flex-col">
         <img
           className="w-52 rounded self-center transition-all ease-out active:scale-95"
