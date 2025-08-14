@@ -55,7 +55,7 @@ export const Library = () => {
 
           <p className="text-subdued italic">Only your saved playlists are shown.</p>
 
-          <hr className="text-green" />
+          <hr className="text-primary" />
 
           {items ? (
             items.map((item, i) => {

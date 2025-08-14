@@ -136,8 +136,8 @@ export const Playlist = () => {
       {playlist && currentUser && playlist.owner.id !== currentUser.id && (
         <Fab onClick={() => navigate('save')}>
           <div className="flex justify-around items-center gap-2">
-            <Plus className="mt-[-1px]" color="#000" size={23} />
-            <p className="text-true-black">Save as Playlist</p>
+            <Plus className="mt-[-1px]" color="#fff" size={23} />
+            <p className="text-white">Save as Playlist</p>
           </div>
         </Fab>
       )}
