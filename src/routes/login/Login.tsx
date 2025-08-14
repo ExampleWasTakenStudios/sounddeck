@@ -14,7 +14,7 @@ export const Login = () => {
 
   return (
     <div className="bg-black flex justify-center">
-      <main className="px-4 py-10 bg-black text-white drop-shadow-[0_0_2em_#400073aa] min-h-screen max-w-md flex flex-col items-center gap-5">
+      <main className="px-4 py-10 bg-black text-white min-h-screen max-w-md flex flex-col items-center gap-5">
         <h1 className="font-bold text-3xl text-center">Welcome to SoundDeck!</h1>
 
         <hr className="my-5 text-dark-subdued w-full" />
@@ -56,7 +56,7 @@ export const Login = () => {
             content="Log In with Spotify"
             type="button"
             onClick={() => navigate('/oauth2')}
-            icon={<img src="/img/spotify/icons/Spotify_Icon_Black.png" alt="Spotify Icon" width={20} height={20} />}
+            icon={<img src="/img/spotify/icons/Spotify_Icon_White.png" alt="Spotify Icon" width={20} height={20} />}
           />
           <p className="text-subdued text-center text-sm font-thin">
             SoundDeck is neither endorsed nor associated by or with Spotify AB.
