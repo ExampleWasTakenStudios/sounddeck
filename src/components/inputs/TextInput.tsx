@@ -7,6 +7,7 @@ interface TextInputProps {
 export const TextInput = ({ placeholder, onChange, disabled }: TextInputProps) => {
   return (
     <input
+      autoFocus
       className="text-center bg-transparent outline-none border-b transition-colors focus-visible:border-b-green"
       type="text"
       placeholder={placeholder}

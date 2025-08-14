@@ -13,6 +13,9 @@
         "prettier:write": "prettier . -w",
         "preview": "vite preview"
     },
+    "engines": {
+        "node": "22.x.x"
+    },
     "dependencies": {
         "@spotify/web-api-ts-sdk": "^1.2.0",
         "@types/dompurify": "^3.0.5",
